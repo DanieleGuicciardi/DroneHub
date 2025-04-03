@@ -46,6 +46,13 @@ export const droneProductType = defineType({
       description: 'Add one specification per line using Enter.',
     }),
     defineField({
+      name: 'flyMoreComboPrice',
+      title: 'Fly More Combo Price',
+      type: 'number',
+      description: 'Leave 0 if not avaible',
+      initialValue: 0
+    }),    
+    defineField({
       name: 'stock',
       title: 'stock',
       type: 'number',
