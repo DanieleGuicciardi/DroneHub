@@ -17,7 +17,6 @@ const Home = () => {
 
   return (
     <section ref={containerRef} className="bg-black text-white overflow-hidden">
-      {/* Sticky header container */}
       <div className="h-screen flex flex-col justify-center items-center">
         <motion.h1
           style={{ scale, y }}
@@ -52,7 +51,6 @@ const Home = () => {
         </motion.div>
       </div>
 
-      {/* Scroll content */}
       <div className="min-h-[150vh] bg-white text-black px-8 py-20 rounded-t-3xl">
         <h2 className="text-3xl font-bold mb-6 text-center">Explore our drones</h2>
         <p className="max-w-2xl mx-auto text-center text-lg mb-20">

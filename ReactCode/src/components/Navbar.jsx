@@ -36,17 +36,14 @@ const Navbar = () => {
           className="w-full bg-black/80 backdrop-blur text-white px-6 py-4 fixed top-0 z-50 shadow-md"
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between">
-            {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
               <img src={Logo} alt="Logo" className="h-8" />
             </Link>
 
-            {/* Center Title */}
             <Link to="/" className="text-2xl font-bold tracking-wide hover:text-blue-400 transition-colors">
               DroneHub
             </Link>
 
-            {/* Right Menu */}
             <ul className="flex space-x-6 text-lg font-medium">
               <li>
                 <Link to="/products" className="hover:text-blue-400 transition-colors">

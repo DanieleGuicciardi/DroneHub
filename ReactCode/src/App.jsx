@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import './Index.css'
 
 import Navbar from "./components/Navbar";
-/* importare le pagine prodotti e login */
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login/>} /> */}
         {/*  */}
       </Routes>
+      <Footer/>
     </BrowserRouter>
     </>
   );
