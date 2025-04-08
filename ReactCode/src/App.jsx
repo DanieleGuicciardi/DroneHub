@@ -4,6 +4,7 @@ import './Index.css'
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Products from "./pages/Products";
 
 function App() {
   return (
@@ -12,8 +13,8 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
-       {/*  <Route path="/prodotti" element={<Prodotti/>} />
-        <Route path="/login" element={<Login/>} /> */}
+        <Route path="/products" element={<Products/>} />
+        {/*<Route path="/login" element={<Login/>} /> */}
         {/*  */}
       </Routes>
       <Footer/>
