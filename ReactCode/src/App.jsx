@@ -5,11 +5,13 @@ import './Index.css'
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Products from "./pages/Products";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
     <BrowserRouter>
+      <ScrollToTop/>
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
