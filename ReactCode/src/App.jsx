@@ -10,6 +10,10 @@ import CineDrones from "./pages/CineDrones";
 import FPVDrones from "./pages/FPVDrones";
 import FpvProductDetail from "./pages/FPVProductDetails";
 import CineProductDetail from "./pages/CineProductDetail";
+import Accessories from "./pages/Accessories";
+import AccessoryDetail from "./pages/AccessoriesDetails";
+import EnterpriseDrones from "./pages/EnterpriseDrones";
+import EnterpriseProductDetail from "./pages/EnterpriseProductDetail";
 
 function App() {
   return (
@@ -21,12 +25,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products/>} />
         {/*<Route path="/login" element={<Login/>} /> */}
-        
+
         <Route path="/products/cine" element={<CineDrones />} />
         <Route path="/products/fpv" element={<FPVDrones />} />
+        <Route path="/products/accessories" element={<Accessories />} />
+        <Route path="/products/epdrones" element={<EnterpriseDrones />} />
 
         <Route path="/products/cine/:slug" element={<CineProductDetail />} />
         <Route path="/products/fpv/:slug" element={<FpvProductDetail />} />
+        <Route path="/products/accessories/:slug" element={<AccessoryDetail />} />
+        <Route path="/products/epdrones/:slug" element={<EnterpriseProductDetail />} />
         
       </Routes>
       <Footer/>
