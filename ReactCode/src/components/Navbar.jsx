@@ -35,16 +35,21 @@ const Navbar = () => {
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="w-full bg-black/80 backdrop-blur text-white px-6 py-4 fixed top-0 z-50 shadow-md"
         >
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-2">
+          <div className="max-w-7xl mx-auto flex items-center justify-between relative">
+            <Link to="/" className="flex items-center gap-2 z-10">
               <img src={Logo} alt="Logo" className="h-8" />
             </Link>
 
-            <Link to="/" className="text-2xl font-bold tracking-wide hover:text-blue-400 transition-colors">
-              DroneHub
-            </Link>
+            <div className="absolute left-1/2 -translate-x-1/2">
+              <Link
+                to="/"
+                className="text-2xl font-bold tracking-wide hover:text-blue-400 transition-colors"
+              >
+                DroneHub
+              </Link>
+            </div>
 
-            <ul className="flex space-x-6 text-lg font-medium">
+            <ul className="flex space-x-6 text-lg font-medium z-10">
               <li>
                 <Link to="/products" className="hover:text-blue-400 transition-colors">
                   Products
