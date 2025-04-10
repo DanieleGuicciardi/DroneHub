@@ -1,60 +1,67 @@
+import { useState } from "react";
+import { Link } from "react-router-dom"; 
+
+const faqs = [
+  {
+    question: "How can I track my order?",
+    answer:
+      "Once your order has been shipped, you will receive a confirmation email with tracking details. You can also check the order status in your account.",
+  },
+  {
+    question: "What is the return policy?",
+    answer:
+      "We accept returns within 14 days of delivery for unused products in original packaging. Shipping costs are non-refundable.",
+  },
+  {
+    question: "Which payment methods are accepted?",
+    answer:
+      "We accept all major credit cards, PayPal, and bank transfers. For enterprise orders, invoicing is available.",
+  },
+  {
+    question: "Do you offer warranty for drones?",
+    answer:
+      "Yes, all drones come with a 1-year limited warranty covering manufacturing defects. Accidental damage is not covered.",
+  },
+  {
+    question: "Can I modify or cancel my order?",
+    answer:
+      "If the order hasn’t been shipped yet, yes. Contact us as soon as possible via email or live chat.",
+  },
+];
+
 const HelpSupport = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <section className="min-h-screen bg-black text-white px-6 py-16">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-2">Help & Support</h1>
-        <p className="text-gray-400">Need assistance? We're here to help you fly smoothly.</p>
+        <p className="text-gray-400">Answers to common questions about your orders, payments and drones.</p>
       </div>
 
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
-          <ul className="space-y-4 text-gray-300 text-sm">
-            <li>
-              <strong>How do I track my order?</strong><br />
-              You’ll receive a confirmation email with tracking details once your order ships.
-            </li>
-            <li>
-              <strong>Can I return a product?</strong><br />
-              Yes! You can return items within 14 days of delivery if unused and in original condition.
-            </li>
-            <li>
-              <strong>Do you offer technical support?</strong><br />
-              Absolutely! Contact our tech team via the form below or through live chat.
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Contact Support</h2>
-          <form className="space-y-4">
-            <input
-              type="text"
-              placeholder="Your name"
-              className="w-full bg-gray-800 px-4 py-2 rounded-md text-white placeholder-gray-400"
-            />
-            <input
-              type="email"
-              placeholder="Your email"
-              className="w-full bg-gray-800 px-4 py-2 rounded-md text-white placeholder-gray-400"
-            />
-            <textarea
-              rows="4"
-              placeholder="How can we help you?"
-              className="w-full bg-gray-800 px-4 py-2 rounded-md text-white placeholder-gray-400"
-            ></textarea>
+      <div className="max-w-3xl mx-auto space-y-6">
+        {faqs.map((faq, index) => (
+          <div key={index} className="border-b border-gray-700 pb-4">
             <button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md font-semibold transition"
+              onClick={() => toggle(index)}
+              className="w-full flex justify-between items-center text-left text-lg font-semibold text-white hover:text-blue-400 transition"
             >
-              Send Message
+              {faq.question}
+              <span className="text-blue-500 text-xl">{openIndex === index ? "-" : "+"}</span>
             </button>
-          </form>
-        </div>
+            {openIndex === index && (
+              <p className="mt-3 text-gray-400 text-sm leading-relaxed">{faq.answer}</p>
+            )}
+          </div>
+        ))}
       </div>
 
       <div className="text-center mt-20 text-sm text-gray-500">
-        Still need help? Email us at <span className="text-blue-400">support@dronehub.com</span>
+        Still need help? Contact us <Link to="/contacts" className="text-blue-400 underline hover:text-blue-300 transition">here</Link>
       </div>
     </section>
   );

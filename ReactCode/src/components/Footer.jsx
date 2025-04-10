@@ -29,7 +29,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
         <div className="flex flex-wrap gap-6 justify-center md:justify-start">
           <Link to="/help&support" className="hover:text-white transition">Help & Support</Link>
-          <a href="#" className="hover:text-white transition">Contacts</a>
+          <Link to="/contacts" className="hover:text-white transition">Contacts</Link>
           <a href="#" className="hover:text-white transition">About Us</a>
         </div>
 
