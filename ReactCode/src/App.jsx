@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Products from "./pages/Products";
 import ScrollToTop from "./components/ScrollToTop";
+
+import Login from "./pages/Login";
 import CineDrones from "./pages/CineDrones";
 import FPVDrones from "./pages/FPVDrones";
 import FpvProductDetail from "./pages/FPVProductDetails";
@@ -14,6 +16,7 @@ import Accessories from "./pages/Accessories";
 import AccessoryDetail from "./pages/AccessoriesDetails";
 import EnterpriseDrones from "./pages/EnterpriseDrones";
 import EnterpriseProductDetail from "./pages/EnterpriseProductDetail";
+
 
 function App() {
   return (
@@ -24,7 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products/>} />
-        {/*<Route path="/login" element={<Login/>} /> */}
+        <Route path="/login" element={<Login/>} />
 
         <Route path="/products/cine" element={<CineDrones />} />
         <Route path="/products/fpv" element={<FPVDrones />} />
@@ -35,7 +38,7 @@ function App() {
         <Route path="/products/fpv/:slug" element={<FpvProductDetail />} />
         <Route path="/products/accessories/:slug" element={<AccessoryDetail />} />
         <Route path="/products/epdrones/:slug" element={<EnterpriseProductDetail />} />
-        
+
       </Routes>
       <Footer/>
     </BrowserRouter>
