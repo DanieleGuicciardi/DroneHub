@@ -4,10 +4,13 @@ import './Index.css'
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Login from "./pages/Login";
 import Products from "./pages/Products";
 import ScrollToTop from "./components/ScrollToTop";
+import HelpSupport from "./pages/HelpSupport";
+import Contacts from "./pages/Contacts";
+import AboutUs from "./pages/AboutUs";
 
-import Login from "./pages/Login";
 import CineDrones from "./pages/CineDrones";
 import FPVDrones from "./pages/FPVDrones";
 import FpvProductDetail from "./pages/FPVProductDetails";
@@ -28,6 +31,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/help&support" element={<HelpSupport/>} />
+        <Route path="/contacts" element={<Contacts/>} />
+        <Route path="/aboutus" element={<AboutUs/>} />
+
+
 
         <Route path="/products/cine" element={<CineDrones />} />
         <Route path="/products/fpv" element={<FPVDrones />} />

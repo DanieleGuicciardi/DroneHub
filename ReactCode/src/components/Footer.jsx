@@ -1,4 +1,5 @@
 import { FaTruck, FaCreditCard, FaEnvelope, FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -25,22 +26,24 @@ const Footer = () => {
 
       <div className="my-10 border-t border-gray-700"></div> {/* br */}
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
-        <div className="flex flex-wrap gap-6 justify-center md:justify-start">
-          <a href="#" className="hover:text-white transition">Help & Support</a>
-          <a href="#" className="hover:text-white transition">Contacts</a>
-          <a href="#" className="hover:text-white transition">About Us</a>
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6 text-sm text-gray-400 text-center md:text-left">
+  
+        <div className="flex flex-wrap gap-6 justify-center md:justify-start w-full md:w-1/3">
+          <Link to="/help&support" className="hover:text-white transition">Help & Support</Link>
+          <Link to="/contacts" className="hover:text-white transition">Contacts</Link>
+          <Link to="/about" className="hover:text-white transition">About Us</Link>
         </div>
 
-        <div className="flex gap-4 text-xl">
+        <div className="flex justify-center gap-4 text-xl w-full md:w-1/3">
           <a href="#" className="hover:text-blue-500 transition"><FaFacebook /></a>
           <a href="#" className="hover:text-pink-500 transition"><FaInstagram /></a>
           <a href="#" className="hover:text-red-500 transition"><FaYoutube /></a>
         </div>
 
-        <div className="text-center md:text-right">
-          © DroneHub {new Date().getFullYear()}
+        <div className="w-full md:w-1/3 text-center md:text-right">
+          © DroneHub 2025
         </div>
+
       </div>
     </footer>
   );
