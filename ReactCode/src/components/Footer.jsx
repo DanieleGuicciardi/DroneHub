@@ -1,4 +1,5 @@
 import { FaTruck, FaCreditCard, FaEnvelope, FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -27,7 +28,7 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
         <div className="flex flex-wrap gap-6 justify-center md:justify-start">
-          <a href="#" className="hover:text-white transition">Help & Support</a>
+          <Link to="/help&support" className="hover:text-white transition">Help & Support</Link>
           <a href="#" className="hover:text-white transition">Contacts</a>
           <a href="#" className="hover:text-white transition">About Us</a>
         </div>
