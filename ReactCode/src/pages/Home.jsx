@@ -54,10 +54,10 @@ const Home = () => {
       <div className="min-h-[150vh] bg-white text-black px-8 py-20 rounded-t-3xl">
         <h2 className="text-3xl font-bold mb-6 text-center">Explore our drones</h2>
         <p className="max-w-2xl mx-auto text-center text-lg mb-20">
-          Scroll to see the title shrink and move to the top. This section simulates actual page content like your product grid, featured courses, or subscriber info.
+          Test
         </p>
         <div className="h-[100vh] bg-gray-200 rounded-xl flex items-center justify-center text-xl">
-          Test scroll area
+          Test 
         </div>
       </div>
     </section>

@@ -30,7 +30,7 @@ const Footer = () => {
         <div className="flex flex-wrap gap-6 justify-center md:justify-start">
           <Link to="/help&support" className="hover:text-white transition">Help & Support</Link>
           <Link to="/contacts" className="hover:text-white transition">Contacts</Link>
-          <a href="#" className="hover:text-white transition">About Us</a>
+          <Link to="/aboutus" className="hover:text-white transition">About Us</Link>
         </div>
 
         <div className="flex gap-4 text-xl">
