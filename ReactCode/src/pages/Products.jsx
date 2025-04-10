@@ -62,7 +62,6 @@ const Products = () => {
         ))}
       </div>
 
-      {/* Accessories */}
       <motion.div
         className="max-w-4xl mx-auto mb-16"
         variants={fadeInUp}
@@ -86,7 +85,6 @@ const Products = () => {
         </Link>
       </motion.div>
 
-      {/* Enterprise */}
       <motion.div
         className="text-center mt-20"
         variants={fadeInUp}
@@ -94,7 +92,7 @@ const Products = () => {
       >
         <p className="text-xl mb-4">Are you a business or professional operator?</p>
         <Link
-          to="/products/enterprise"
+          to="/products/epdrones"
           className="inline-block bg-blue-600 hover:bg-blue-700 transition text-white px-8 py-4 rounded-full font-semibold shadow-lg"
         >
           Explore Enterprise Drones
