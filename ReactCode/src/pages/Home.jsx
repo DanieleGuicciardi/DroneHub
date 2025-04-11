@@ -1,5 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+
+import CineVideo from "../assets/Homepage/CineVideo.mp4";
+import FPVVideo from "../assets/Homepage/FPVVideo.mp4"
 
 const Home = () => {
   const siteTitle = "DroneHub";
@@ -9,6 +12,9 @@ const Home = () => {
   const containerRef = useRef(null);
   const stabilizedRef = useRef(null);
   const fpvRef = useRef(null);
+
+  const stabilizedVideoRef = useRef(null);
+  const fpvVideoRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -22,9 +28,37 @@ const Home = () => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // function for automatic player video
+  useEffect(() => {
+    const videos = [stabilizedVideoRef.current, fpvVideoRef.current];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    videos.forEach((video) => {
+      if (video) observer.observe(video);
+    });
+
+    return () => {
+      videos.forEach((video) => {
+        if (video) observer.unobserve(video);
+      });
+    };
+  }, []);
+
   return (
     <section ref={containerRef} className="bg-black text-white overflow-hidden">
-      
       <div className="h-screen flex flex-col justify-center items-center">
         <motion.h1
           style={{ scale, y }}
@@ -63,6 +97,7 @@ const Home = () => {
         </motion.div>
       </div>
 
+      {/* CINE */}
       <motion.div
         ref={stabilizedRef}
         initial={{ opacity: 0, x: -100 }}
@@ -91,14 +126,17 @@ const Home = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <img
-            src="" /* implement the autoplay script */
-            alt="Cinedrone Video"
+          <video
+            ref={stabilizedVideoRef}
+            src={CineVideo}
+            muted
+            playsInline
             className="w-full h-full object-cover"
           />
         </motion.div>
       </motion.div>
 
+      {/* FPV */}
       <motion.div
         ref={fpvRef}
         initial={{ opacity: 0, x: 100 }}
@@ -128,9 +166,11 @@ const Home = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <img
-            src="" /* implement the autoplay script */
-            alt="Video Fpv"
+          <video
+            ref={fpvVideoRef}
+            src={FPVVideo}
+            muted
+            playsInline
             className="w-full h-full object-cover"
           />
         </motion.div>
