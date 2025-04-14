@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import HelpSupport from "./pages/HelpSupport";
 import Contacts from "./pages/Contacts";
 import AboutUs from "./pages/AboutUs";
+import Cart from "./pages/Cart"
 
 import CineDrones from "./pages/CineDrones";
 import FPVDrones from "./pages/FPVDrones";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/help&support" element={<HelpSupport/>} />
         <Route path="/contacts" element={<Contacts/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
+        <Route path="/cart" element={<Cart/>} />
 
         <Route path="/products/cine" element={<CineDrones />} />
         <Route path="/products/fpv" element={<FPVDrones />} />

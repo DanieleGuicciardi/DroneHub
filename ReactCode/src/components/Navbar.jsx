@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "../assets/headLogo.png";
 import { FaShoppingCart } from "react-icons/fa";
+
+import Logo from "../assets/headLogo.png";
+import { useCartStore } from "../store/useCartStore";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const location = useLocation();
-
-  // Placeholder per conteggio prodotti nel carrello
-  const [cartCount, setCartCount] = useState(0);
+  const cartCount = useCartStore((state) => state.cart.length);
 
   useEffect(() => {
     if (location.pathname !== "/") {
