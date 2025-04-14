@@ -42,40 +42,40 @@ const EnterpriseDrones = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto">
+      <div className="space-y-24 max-w-7xl mx-auto">
         {drones.map((drone, index) => (
           <motion.div
             key={drone._id}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition"
+            className="flex flex-col md:flex-row items-center gap-10"
           >
-            <img
-              src={urlFor(drone.images?.[0]).width(1000).url()}
-              alt={drone.title}
-              className="w-full h-64 object-cover"
-            />
+            <div className="w-full md:w-1/2 rounded-3xl overflow-hidden">
+              <img
+                src={urlFor(drone.images?.[0]).width(1000).url()}
+                alt={drone.title}
+                className="w-full h-80 object-cover rounded-3xl"
+              />
+            </div>
 
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-2">{drone.title}</h2>
-              <p className="text-sm text-gray-400 mb-4 capitalize">Category: {drone.category}</p>
-              <p className="text-gray-300 text-sm mb-4">
+            <div className="w-full md:w-1/2 space-y-4">
+              <h2 className="text-3xl font-bold leading-snug">{drone.title}</h2>
+              <p className="text-sm text-gray-400 capitalize">Category: {drone.category}</p>
+              <p className="text-gray-300 text-base">
                 {drone.description?.[0]?.children?.[0]?.text || "Professional drone system"}
               </p>
-              <div className="mb-4">
-                <h4 className="font-semibold text-sm mb-1">First Configuration:</h4>
-                {drone.configurations?.[0] && (
-                  <p className="text-cyan-400 text-lg font-semibold">
-                    {drone.configurations[0].label}: {drone.configurations[0].price} €
-                  </p>
-                )}
-              </div>
+
+              {drone.configurations?.[0] && (
+                <p className="text-cyan-400 text-xl font-semibold">
+                  {drone.configurations[0].label}: {drone.configurations[0].price} €
+                </p>
+              )}
 
               <Link
                 to="/contacts"
-                className="inline-block mt-4 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-full font-semibold shadow-md transition"
+                className="inline-block mt-4 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-full font-semibold shadow-md transition-all"
               >
                 Contact Us for Purchase
               </Link>

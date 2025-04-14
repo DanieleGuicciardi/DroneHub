@@ -52,7 +52,6 @@ const AccessoryDetail = () => {
   return (
     <section className="min-h-screen bg-black text-white px-6 py-16">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Immagini a sinistra */}
         <div className="space-y-6">
           {product.images?.map((img, i) => (
             <img
@@ -63,8 +62,7 @@ const AccessoryDetail = () => {
             />
           ))}
         </div>
-  
-        {/* Dettagli a destra */}
+        
         <div>
           <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
           <p className="text-gray-400 mb-2 capitalize">
