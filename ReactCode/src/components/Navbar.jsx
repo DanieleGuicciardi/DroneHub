@@ -12,22 +12,20 @@ const Navbar = () => {
   const cartCount = useCartStore((state) => state.cart.length);
 
   useEffect(() => {
-    if (location.pathname !== "/") {
-      setShowNavbar(true);
-      return;
-    }
-
     const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.7) {
+      if (location.pathname !== "/") {
         setShowNavbar(true);
       } else {
-        setShowNavbar(false);
+        setShowNavbar(window.scrollY > window.innerHeight * 0.7);
       }
     };
-
+  
+    handleScroll(); //func to reset the navabar when you go to the homepage
+  
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
+  
 
   return (
     <AnimatePresence>

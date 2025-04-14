@@ -22,8 +22,8 @@ const Contacts = () => {
             <h2 className="text-xl font-semibold mb-2">Address</h2>
             <p className="text-gray-300">
               DroneHub HQ<br />
-              Via dei Droni 21<br />
-              00100 Roma, Italia
+              Via dei Fori Imperiali 46<br />
+              00184 Roma, Italia
             </p>
           </div>
         </div>
