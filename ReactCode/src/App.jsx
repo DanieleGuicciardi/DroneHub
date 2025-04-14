@@ -35,8 +35,6 @@ function App() {
         <Route path="/contacts" element={<Contacts/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
 
-
-
         <Route path="/products/cine" element={<CineDrones />} />
         <Route path="/products/fpv" element={<FPVDrones />} />
         <Route path="/products/accessories" element={<Accessories />} />
