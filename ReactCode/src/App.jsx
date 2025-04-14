@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import HelpSupport from "./pages/HelpSupport";
 import Contacts from "./pages/Contacts";
 import AboutUs from "./pages/AboutUs";
+import Cart from "./pages/Cart"
 
 import CineDrones from "./pages/CineDrones";
 import FPVDrones from "./pages/FPVDrones";
@@ -18,7 +19,6 @@ import CineProductDetail from "./pages/CineProductDetail";
 import Accessories from "./pages/Accessories";
 import AccessoryDetail from "./pages/AccessoriesDetails";
 import EnterpriseDrones from "./pages/EnterpriseDrones";
-import EnterpriseProductDetail from "./pages/EnterpriseProductDetail";
 
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
         <Route path="/help&support" element={<HelpSupport/>} />
         <Route path="/contacts" element={<Contacts/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
+        <Route path="/cart" element={<Cart/>} />
 
         <Route path="/products/cine" element={<CineDrones />} />
         <Route path="/products/fpv" element={<FPVDrones />} />
@@ -43,7 +44,6 @@ function App() {
         <Route path="/products/cine/:slug" element={<CineProductDetail />} />
         <Route path="/products/fpv/:slug" element={<FpvProductDetail />} />
         <Route path="/products/accessories/:slug" element={<AccessoryDetail />} />
-        <Route path="/products/epdrones/:slug" element={<EnterpriseProductDetail />} />
 
       </Routes>
       <Footer/>
