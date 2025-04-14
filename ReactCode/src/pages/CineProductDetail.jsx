@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { client } from "../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
+
 import { useCartStore } from "../store/useCartStore";
 
 const builder = imageUrlBuilder(client);

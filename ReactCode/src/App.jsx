@@ -19,7 +19,6 @@ import CineProductDetail from "./pages/CineProductDetail";
 import Accessories from "./pages/Accessories";
 import AccessoryDetail from "./pages/AccessoriesDetails";
 import EnterpriseDrones from "./pages/EnterpriseDrones";
-import EnterpriseProductDetail from "./pages/EnterpriseProductDetail";
 
 
 function App() {
@@ -45,7 +44,6 @@ function App() {
         <Route path="/products/cine/:slug" element={<CineProductDetail />} />
         <Route path="/products/fpv/:slug" element={<FpvProductDetail />} />
         <Route path="/products/accessories/:slug" element={<AccessoryDetail />} />
-        <Route path="/products/epdrones/:slug" element={<EnterpriseProductDetail />} />
 
       </Routes>
       <Footer/>
