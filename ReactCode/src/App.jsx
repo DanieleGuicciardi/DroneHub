@@ -1,24 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import './Index.css'
+
+import Homepage from "./pages/home/Home"
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Login from "./pages/Login";
-import Products from "./pages/Products";
+import Login from "./pages/auth/Login";
+import Products from "./pages/products/Products";
 import ScrollToTop from "./components/ScrollToTop";
-import HelpSupport from "./pages/HelpSupport";
-import Contacts from "./pages/Contacts";
-import AboutUs from "./pages/AboutUs";
-import Cart from "./pages/Cart"
+import HelpSupport from "./pages/info/HelpSupport";
+import Contacts from "./pages/info/Contacts";
+import AboutUs from "./pages/info/AboutUs";
+import Cart from "./pages/cart/Cart"
 
-import CineDrones from "./pages/CineDrones";
-import FPVDrones from "./pages/FPVDrones";
-import FpvProductDetail from "./pages/FPVProductDetails";
-import CineProductDetail from "./pages/CineProductDetail";
-import Accessories from "./pages/Accessories";
-import AccessoryDetail from "./pages/AccessoriesDetails";
-import EnterpriseDrones from "./pages/EnterpriseDrones";
+import CineDrones from "./pages/products/CineDrones";
+import FPVDrones from "./pages/products/FPVDrones";
+import FpvProductDetail from "./pages/products/FPVProductDetails";
+import CineProductDetail from "./pages/products/CineProductDetail";
+import Accessories from "./pages/products/Accessories";
+import AccessoryDetail from "./pages/products/AccessoriesDetails";
+import EnterpriseDrones from "./pages/products/EnterpriseDrones";
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
       <ScrollToTop/>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/products" element={<Products/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/help&support" element={<HelpSupport/>} />
