@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import PersonalPhoto from "../assets/AboutUs/PersonalPhoto.jpg";
-import PersonalVideo from "../assets/AboutUs/PersonalVideo.mp4";
 
 const AboutUs = () => {
   return (
@@ -62,7 +61,7 @@ const AboutUs = () => {
           viewport={{ once: false, amount: 0.3 }}
         >
           <video
-            src={PersonalVideo}
+            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715612/PersonalVideo_spiw1x.mp4"
             controls
             className="w-full h-auto rounded-xl"
             autoPlay

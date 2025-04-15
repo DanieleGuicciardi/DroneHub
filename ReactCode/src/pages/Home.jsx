@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-
 const Home = () => {
   const siteTitle = "DroneHub";
   const subtitle = "What kind of pilot are you?";
@@ -124,14 +123,13 @@ const Home = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <iframe
-            src="https://www.youtube.com/embed/_TfTX-wHs18?autoplay=1&mute=1&loop=1&playlist=_TfTX-wHs18"
-            title="Stabilized Drone Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="w-full h-full object-cover rounded-xl"
-          ></iframe>
-
+          <video
+            ref={stabilizedVideoRef}
+            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715537/CineVideo_kwp4jr.mp4"
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
         </motion.div>
       </motion.div>
 
@@ -165,15 +163,13 @@ const Home = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <iframe
-            src="https://www.youtube.com/embed/x7RETsa3-cc?autoplay=1&mute=1&loop=1&playlist=x7RETsa3-cc"
-            title="FPV Drone Video"
-            frameBorder="0"
-            allow="autoplay; encrypted-media; fullscreen"
-            allowFullScreen
-            className="w-full h-full object-cover rounded-xl"
+          <video
+            ref={fpvVideoRef}
+            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715501/FPVVideo_nfxrnu.mp4"
+            muted
+            playsInline
+            className="w-full h-full object-cover"
           />
-
         </motion.div>
       </motion.div>
 
