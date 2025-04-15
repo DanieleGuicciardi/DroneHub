@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaShoppingCart } from "react-icons/fa";
 
-import Logo from "../assets/headLogo.png";
 import { useCartStore } from "../store/useCartStore";
 
 const Navbar = () => {
@@ -38,12 +37,10 @@ const Navbar = () => {
           className="w-full bg-black/80 backdrop-blur text-white px-6 py-4 fixed top-0 z-50 shadow-md"
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between relative">
-            {/* Logo a sinistra */}
             <Link to="/" className="flex items-center gap-2 z-10">
-              <img src={Logo} alt="Logo" className="h-8" />
+              <img src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1744716075/headLogo_ooposs.png" alt="Logo" className="h-8" />
             </Link>
 
-            {/* Nome sito al centro */}
             <div className="absolute left-1/2 -translate-x-1/2">
               <Link
                 to="/"
@@ -53,7 +50,6 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Menu a destra */}
             <ul className="flex items-center space-x-6 text-lg font-medium z-10">
               <li>
                 <Link to="/products" className="hover:text-blue-400 transition-colors">
