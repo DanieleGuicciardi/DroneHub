@@ -1,8 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-import CineVideo from "../assets/Homepage/CineVideo.mp4";
-import FPVVideo from "../assets/Homepage/FPVVideo.mp4"
 
 const Home = () => {
   const siteTitle = "DroneHub";
@@ -126,13 +124,14 @@ const Home = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <video
-            ref={stabilizedVideoRef}
-            src={CineVideo}
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
+          <iframe
+            src="https://www.youtube.com/embed/_TfTX-wHs18?autoplay=1&mute=1&loop=1&playlist=_TfTX-wHs18"
+            title="Stabilized Drone Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="w-full h-full object-cover rounded-xl"
+          ></iframe>
+
         </motion.div>
       </motion.div>
 
@@ -166,13 +165,15 @@ const Home = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <video
-            ref={fpvVideoRef}
-            src={FPVVideo}
-            muted
-            playsInline
-            className="w-full h-full object-cover"
+          <iframe
+            src="https://www.youtube.com/embed/x7RETsa3-cc?autoplay=1&mute=1&loop=1&playlist=x7RETsa3-cc"
+            title="FPV Drone Video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media; fullscreen"
+            allowFullScreen
+            className="w-full h-full object-cover rounded-xl"
           />
+
         </motion.div>
       </motion.div>
 
