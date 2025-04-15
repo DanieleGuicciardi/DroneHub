@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
-export const droneProductType = defineType({
-  name: 'CineDrones',
-  title: 'CineDrones',
+export const secondaryproducts = defineType({
+  name: 'SecondaryProducts',
+  title: 'Secondary Products',
   type: 'document',
   fields: [
     defineField({
@@ -53,14 +53,6 @@ export const droneProductType = defineType({
     }),
 
     defineField({
-      name: 'flyMoreComboPrice',
-      title: 'Fly More Combo Price (€)',
-      type: 'number',
-      description: 'Leave 0 if not available',
-      initialValue: 0,
-    }),
-
-    defineField({
       name: 'stock',
       title: 'Stock Quantity',
       type: 'number',
@@ -71,7 +63,7 @@ export const droneProductType = defineType({
       title: 'Category',
       type: 'string',
       options: {
-        list: ['Under249g', 'Advanced', 'Professional'],
+        list: ['ActionCam', 'RemoteController', 'Stabilizers', 'Accessory'],
         layout: 'radio',
       },
     }),

@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
-export const droneProductType = defineType({
-  name: 'CineDrones',
-  title: 'CineDrones',
+export const fpvDroneType = defineType({
+  name: 'FPVDrones',
+  title: 'FPV Drones',
   type: 'document',
   fields: [
     defineField({
@@ -24,10 +24,35 @@ export const droneProductType = defineType({
     }),
 
     defineField({
-      name: 'price',
-      title: 'Price (€)',
-      type: 'number',
-      validation: (rule) => rule.required().min(1).precision(2),
+      name: 'configurations',
+      title: 'Available Configurations',
+      type: 'array',
+      of: [
+        defineField({
+          name: 'configuration',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'label',
+              title: 'Option Label',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'price',
+              title: 'Price (€)',
+              type: 'number',
+              validation: (rule) => rule.required().min(1).precision(2),
+            }),
+            defineField({
+              name: 'previewImage',
+              title: 'Preview Image',
+              type: 'image',
+            }),
+          ],
+        }),
+      ],
+      validation: (rule) => rule.required().min(1),
     }),
 
     defineField({
@@ -49,21 +74,14 @@ export const droneProductType = defineType({
       name: 'specifications',
       title: 'Specifications',
       type: 'text',
-      description: 'Add one specification per line using Enter.',
-    }),
-
-    defineField({
-      name: 'flyMoreComboPrice',
-      title: 'Fly More Combo Price (€)',
-      type: 'number',
-      description: 'Leave 0 if not available',
-      initialValue: 0,
+      description: 'Add one spec per line',
     }),
 
     defineField({
       name: 'stock',
       title: 'Stock Quantity',
       type: 'number',
+      validation: (rule) => rule.min(0),
     }),
 
     defineField({
@@ -71,9 +89,10 @@ export const droneProductType = defineType({
       title: 'Category',
       type: 'string',
       options: {
-        list: ['Under249g', 'Advanced', 'Professional'],
+        list: ['Mini', 'Freestyle', 'LongRange', 'Race'],
         layout: 'radio',
       },
     }),
+
   ],
 })
