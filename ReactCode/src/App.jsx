@@ -12,6 +12,8 @@ import HelpSupport from "./pages/info/HelpSupport";
 import Contacts from "./pages/info/Contacts";
 import AboutUs from "./pages/info/AboutUs";
 import Cart from "./pages/cart/Cart"
+import Checkout from "./pages/cart/Checkout";
+
 
 import CineDrones from "./pages/products/CineDrones";
 import FPVDrones from "./pages/products/FPVDrones";
@@ -36,6 +38,7 @@ function App() {
         <Route path="/contacts" element={<Contacts/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/checkout" element={<Checkout/>} />
 
         <Route path="/products/cine" element={<CineDrones />} />
         <Route path="/products/fpv" element={<FPVDrones />} />
