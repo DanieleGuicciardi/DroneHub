@@ -30,7 +30,7 @@ const Checkout = () => {
           <p className="text-lg text-gray-300 max-w-xl">
             An invoice will be sent to {guestEmail || "your email"} shortly.
             <br />
-            As soon as your drone is shipped, you’ll receive your tracking code.
+            As soon as your product is shipped, you’ll receive your tracking code.
           </p>
         </>
       )}

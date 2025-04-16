@@ -19,11 +19,11 @@ const Cart = () => {
       } else {
         const guestEmail = window.prompt("Enter your email to proceed as a guest:");
         if (guestEmail) {
-          navigate("/checkout", { state: { guestEmail } });
+          navigate("/orderinfo", { state: { guestEmail } });
         }
       }
     } else {
-      navigate("/checkout");
+      navigate("/orderinfo");
     }
   };
 

@@ -12,7 +12,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!email || !password) return alert("Please fill all fields");
 
     login(email);
@@ -68,7 +67,10 @@ const Login = () => {
               Welcome back, <span className="text-blue-400">{user.email}</span>
             </h2>
             <button
-              onClick={logout}
+              onClick={() => {
+                logout();
+                navigate("/");
+              }}
               className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-md font-semibold transition"
             >
               Logout
