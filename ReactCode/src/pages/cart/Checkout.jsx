@@ -26,7 +26,7 @@ const Checkout = () => {
         </>
       ) : (
         <>
-          <h1 className="text-3xl font-bold mb-6">Thank you for your purchase! 🎉</h1>
+          <h1 className="text-3xl font-bold mb-6">Thank you for your purchase!</h1>
           <p className="text-lg text-gray-300 max-w-xl">
             An invoice will be sent to {guestEmail || "your email"} shortly.
             <br />

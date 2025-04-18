@@ -19,20 +19,23 @@ const Login = () => {
   };
 
   return (
-    <section className="min-h-screen bg-black text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-gray-900 p-8 rounded-xl shadow-lg">
+    <section className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-gray-800/60 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-gray-700">
         {!user ? (
           <>
-            <h1 className="text-3xl font-bold mb-6 text-center">Login to DroneHub</h1>
+            <h1 className="text-3xl font-extrabold mb-6 text-center text-white drop-shadow-md">
+              Login to <span className="text-blue-500">DroneHub</span>
+            </h1>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
                   Email
                 </label>
                 <input
                   id="email"
                   type="email"
-                  className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded-md bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
@@ -40,13 +43,13 @@ const Login = () => {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium mb-1">
+                <label htmlFor="password" className="block text-sm font-medium mb-2">
                   Password
                 </label>
                 <input
                   id="password"
                   type="password"
-                  className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded-md bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
@@ -55,7 +58,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-md font-semibold text-white transition"
+                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-md font-semibold text-white shadow-lg transition-all"
               >
                 Login
               </button>
@@ -71,7 +74,7 @@ const Login = () => {
                 logout();
                 navigate("/");
               }}
-              className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-md font-semibold transition"
+              className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md font-semibold shadow-lg transition-all"
             >
               Logout
             </button>
