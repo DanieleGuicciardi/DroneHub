@@ -16,10 +16,13 @@ export const useCartStore = create(
           cart: state.cart.filter((item) => item._id !== productId),
         })),
 
-      clearCart: () => set({ cart: [] }),
+      clearCart: () => {
+        set({ cart: [] });
+        localStorage.removeItem("dronehub-cart");
+      },
     }),
     {
-      name: "dronehub-cart", 
+      name: "dronehub-cart",
     }
   )
 );
