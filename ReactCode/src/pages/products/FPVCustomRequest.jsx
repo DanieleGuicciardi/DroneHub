@@ -26,7 +26,7 @@ const FpvCustomRequest = () => {
 
     setSubmitted(true);
 
-    // Qui in futuro puoi fare una chiamata API
+    // add EmailJS ???
     console.log("Custom build request:", form);
   };
 

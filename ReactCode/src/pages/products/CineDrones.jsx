@@ -94,7 +94,7 @@ const CineDrones = () => {
               to={`/products/cine/${product.slug.current}`}
               className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold shadow-md transition"
             >
-              Acquista
+              Buy Now
             </Link>
           </div>
         ))}

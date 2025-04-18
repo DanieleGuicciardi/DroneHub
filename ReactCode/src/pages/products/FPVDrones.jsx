@@ -85,12 +85,7 @@ const FPVDrones = () => {
               alt={product.title}
               className="w-64 h-64 object-contain mb-4 drop-shadow-xl transition-transform duration-300 group-hover:scale-105"
             />
-            <h2 className="text-xl font-semibold group-hover:text-purple-400 transition">{product.title}</h2>
-            <p className="text-pink-500 font-bold mt-1">
-              {product.configurations?.[0]?.price
-                ? `${product.configurations[0].price} €`
-                : "Price not available"}
-            </p>
+            <h2 className="text-xl font-semibold group-hover:text-blue-400 transition">{product.title}</h2>
             {product.configurations?.length > 1 && (
               <p className="text-sm text-gray-400">
                 {product.configurations.length} configurations
@@ -98,9 +93,9 @@ const FPVDrones = () => {
             )}
             <Link
               to={`/products/fpv/${product.slug.current}`}
-              className="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-semibold shadow-md transition"
+              className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold shadow-md transition"
             >
-              Acquista
+              More Info
             </Link>
           </div>
         ))}
