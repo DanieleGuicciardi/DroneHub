@@ -59,7 +59,7 @@ const Products = () => {
               whileHover={{ scale: 1.05 }}
             />
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-              <h2 className="text-2xl font-bold group-hover:text-purple-400 transition">
+              <h2 className="text-2xl font-bold group-hover:text-blue-400 transition">
                 FPV Drones
               </h2>
             </div>
@@ -98,9 +98,20 @@ const Products = () => {
         <p className="text-xl mb-4">Are you a business or professional operator?</p>
         <Link
           to="/products/epdrones"
-          className="inline-block bg-blue-600 hover:bg-blue-700 transition text-white px-8 py-4 rounded-full font-semibold shadow-lg"
+          className="inline-flex mt-3 items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white font-semibold rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 group border border-gray-700"
         >
-          Explore Enterprise Drones
+          <span className="text-lg tracking-wide group-hover:tracking-wider transition-all duration-300">
+            Explore Enterprise Drones
+          </span>
+          <svg
+            className="w-5 h-5 text-cyan-400 group-hover:translate-x-1 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </Link>
       </motion.div>
     </motion.section>

@@ -27,6 +27,7 @@ import CineProductDetail from "./pages/products/CineProductDetail";
 import Accessories from "./pages/products/Accessories";
 import AccessoryDetail from "./pages/products/AccessoriesDetails";
 import EnterpriseDrones from "./pages/products/EnterpriseDrones";
+import FpvCustomRequest from "./pages/products/FPVCustomRequest";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route path="/products/cine/:slug" element={<CineProductDetail />} />
         <Route path="/products/fpv/:slug" element={<FpvProductDetail />} />
         <Route path="/products/accessories/:slug" element={<AccessoryDetail />} />
+        <Route path="/products/customrequest" element={<FpvCustomRequest/>} />
 
       </Routes>
       <Footer/>
