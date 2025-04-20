@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { client } from "../../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
 import { useCartStore } from "../../store/useCartStore";
@@ -101,11 +101,53 @@ const CineProductDetail = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-20 grid grid-cols-2 gap-6">
-        <div className="h-64 bg-gray-800 rounded-xl flex items-center justify-center text-gray-500">[ Img ]</div>
-        <div className="h-64 bg-gray-800 rounded-xl flex items-center justify-center text-gray-500">[ Img ]</div>
-        <div className="col-span-2 h-64 bg-gray-800 rounded-xl mt-6 flex items-center justify-center text-gray-500">[ Img ]</div>
+      <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Link
+          to="/products/accessories"
+          className="relative h-64 bg-gray-800 rounded-xl overflow-hidden group"
+        >
+          <img
+            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745180398/CineDownImg_d0baxp.jpg"
+            alt="Accessories"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
+          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
+            Accessories
+          </span>
+        </Link>
+
+        <Link
+          to="/help&support"
+          className="relative h-64 bg-gray-800 rounded-xl overflow-hidden group"
+        >
+          <img
+            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745180409/CineDownImg2_uooaub.jpg"
+            alt="Assurance"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
+          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
+            Assurance
+          </span>
+        </Link>
+
+        <Link
+          to="/contacts"
+          className="relative col-span-1 md:col-span-2 h-64 bg-gray-800 rounded-xl overflow-hidden group"
+        >
+          <img
+            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745181022/CineDownImg3_s59rp9.jpg"
+            alt="Support"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
+          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
+            Support
+          </span>
+        </Link>
       </div>
+
 
       {/* Price navbar */}
       <div className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-centerbackdrop-blur-sm border-t border-gray-800">
