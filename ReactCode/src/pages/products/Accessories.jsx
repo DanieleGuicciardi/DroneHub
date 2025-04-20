@@ -7,10 +7,26 @@ const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
 const categorySections = [
-  { title: "ActionCams", category: "ActionCam" },
-  { title: "Stabilizers", category: "Stabilizers" },
-  { title: "Controllers", category: "RemoteController" },
-  { title: "Other Accessories", category: "Accessory" },
+  {
+    title: "ActionCams",
+    category: "ActionCam",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745135321/ActionCamVideo-1_yla3bx.mp4"
+  },
+  {
+    title: "Stabilizers",
+    category: "Stabilizers",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1744972559/AccessoryVideo-1_yfod9g.mp4"
+  },
+  {
+    title: "Controllers",
+    category: "RemoteController",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745136025/ControllersVideo_qpeqxf.mp4"
+  },
+  {
+    title: "Other Accessories",
+    category: "Accessory",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745135804/OtherAccessoriesVideo_yqpvc7.mp4"
+  },
 ];
 
 const Accessories = () => {
@@ -37,30 +53,30 @@ const Accessories = () => {
 
   return (
     <section className="min-h-screen bg-black text-white px-4 py-16">
-      <h1 className="text-4xl font-extrabold text-center mb-6">Accessories & Add-ons</h1>
-
-      <div className="max-w-6xl mx-auto mb-10">
-        <video
-          src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744972559/AccessoryVideo-1_yfod9g.mp4"
-          muted
-          playsInline
-          autoPlay
-          loop
-          className="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
-        />
-      </div>
+      <h1 className="text-4xl font-extrabold text-center mb-10">Accessories & Add-ons</h1>
 
       <p className="max-w-3xl mx-auto text-center text-gray-400 text-lg mb-16 leading-relaxed">
         Boost your drone setup with the perfect add-ons. Explore dedicated sections for controllers, power solutions, cases and more.
       </p>
 
-      {categorySections.map(({ title, category }) => {
+      {categorySections.map(({ title, category, video }) => {
         const items = getCategoryProducts(category);
         if (items.length === 0) return null;
 
         return (
-          <div key={category} className="mb-20 max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8 border-l-4 border-blue-500 pl-4">{title}</h2>
+          <div key={category} className="mb-24 max-w-6xl mx-auto">
+            <div className="mb-6 rounded-xl overflow-hidden shadow-lg">
+              <h2 className="text-3xl font-bold mb-9 border-l-4 border-blue-500 pl-4">{title}</h2>
+              <video
+                src={video}
+                muted
+                autoPlay
+                loop
+                playsInline
+                className="w-full mb-3 rounded-3xl h-64 md:h-96 object-cover"
+              />
+            </div>
+
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
               {items.map((item) => (
