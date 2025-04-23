@@ -45,7 +45,7 @@ const FPVDrones = () => {
 
       <div className="max-w-6xl mx-auto mb-10">
         <video
-          src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744971521/FPVBuild-1_xcjzwe.mp4"
+          src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414678/Fpvbuild-1_Xcjzwe_rdhpgx.mp4"
           muted
           playsInline
           autoPlay

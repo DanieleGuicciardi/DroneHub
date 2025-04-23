@@ -45,7 +45,7 @@ const CineDrones = () => {
 
       <div className="max-w-6xl mx-auto mb-10">
       <video
-            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744969250/mavic3ProVideo_ygydqm.mp4"
+            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414377/Mavic3provideo_Ygydqm_aozdvk.mp4"
             muted
             playsInline
             autoPlay

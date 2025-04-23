@@ -10,22 +10,22 @@ const categorySections = [
   {
     title: "ActionCams",
     category: "ActionCam",
-    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745135321/ActionCamVideo-1_yla3bx.mp4"
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414988/Actioncamvideo-1_Yla3bx_sujpna.mp4"
   },
   {
     title: "Stabilizers",
     category: "Stabilizers",
-    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1744972559/AccessoryVideo-1_yfod9g.mp4"
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414734/Stabilizersvideo_crbii4.mp4"
   },
   {
     title: "Controllers",
     category: "RemoteController",
-    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745136025/ControllersVideo_qpeqxf.mp4"
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745415017/Controllersvideo_Qpeqxf_w23lq8.mp4"
   },
   {
     title: "Other Accessories",
     category: "Accessory",
-    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745135804/OtherAccessoriesVideo_yqpvc7.mp4"
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414995/Otheraccessoriesvideo_Yqpvc7_stnmle.mp4"
   },
 ];
 
