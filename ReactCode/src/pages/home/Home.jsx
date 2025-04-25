@@ -75,7 +75,15 @@ const Home = () => {
     </div>
   );
 
-  const VideoSection = ({ title, description, videoRef, src, ctaColor, reverse = false }) => (
+  const VideoSection = ({
+    title,
+    description,
+    videoRef,
+    src,
+    ctaColor,
+    reverse = false,
+    ctaLink = "/products"
+  }) => (
     <div
       ref={reverse ? fpvRef : stabilizedRef}
       className="relative h-screen w-full overflow-hidden"
@@ -88,7 +96,7 @@ const Home = () => {
         playsInline
         className="absolute w-full h-full object-cover"
       />
-
+  
       <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center px-6 text-center text-white z-10">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
@@ -107,7 +115,7 @@ const Home = () => {
           {description}
         </motion.p>
         <motion.a
-          href="/products"
+          href={ctaLink}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
           className={`px-8 py-3 ${ctaColor} text-white font-semibold rounded-full shadow-md transition`}
@@ -128,6 +136,7 @@ const Home = () => {
         videoRef={stabilizedVideoRef}
         src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715537/CineVideo_kwp4jr.mp4"
         ctaColor="bg-blue-600 hover:bg-blue-700"
+        ctaLink="/products/cine"
       />
 
       <VideoSection
@@ -136,6 +145,7 @@ const Home = () => {
         videoRef={fpvVideoRef}
         src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715501/FPVVideo_nfxrnu.mp4"
         ctaColor="bg-pink-600 hover:bg-pink-700"
+        ctaLink="/products/fpv"
         reverse
       />
 
