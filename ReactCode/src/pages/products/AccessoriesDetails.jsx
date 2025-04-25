@@ -11,6 +11,7 @@ const AccessoryDetail = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
   const [added, setAdded] = useState(false);
+  const [currentImg, setCurrentImg] = useState(0);
   const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
@@ -51,28 +52,62 @@ const AccessoryDetail = () => {
   return (
     <section className="min-h-screen bg-black text-white px-6 pt-16 pb-32">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Image carousel */}
-        <div className="space-y-4">
-          {product.images?.map((img, i) => (
-            <img
-              key={i}
-              src={urlFor(img).width(800).url()}
-              alt={`Accessory image ${i + 1}`}
-              className="rounded-xl object-cover w-full"
-            />
-          ))}
+        <div className="relative w-full h-150 rounded-xl overflow-hidden">
+          {product.images?.length > 0 && (
+            <>
+              <img
+                src={urlFor(product.images[currentImg]).width(800).url()}
+                alt={`Accessory ${currentImg + 1}`}
+                className="w-full h-full object-contain transition duration-300"
+              />
+
+              <button
+                onClick={() =>
+                  setCurrentImg((prev) =>
+                    prev === 0 ? product.images.length - 1 : prev - 1
+                  )
+                }
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full z-10"
+              >
+                ‹
+              </button>
+              <button
+                onClick={() =>
+                  setCurrentImg((prev) =>
+                    prev === product.images.length - 1 ? 0 : prev + 1
+                  )
+                }
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full z-10"
+              >
+                ›
+              </button>
+
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {product.images.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`w-2.5 h-2.5 rounded-full ${
+                      i === currentImg ? "bg-white" : "bg-gray-500"
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        {/* Product details */}
         <div>
           <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
-          <p className="text-gray-400 mb-2 capitalize">Category: {product.category}</p>
+          <p className="text-gray-400 mb-2 capitalize text-lg">Category: {product.category}</p>
+          <p className="text-blue-500 text-xl font-semibold mb-4">{product.price} €</p>
 
-          <p className="text-blue-500 text-xl font-semibold">{product.price} €</p>
+          {product.description && (
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">{product.description}</p>
+          )}
 
           {product.specifications && (
             <div className="mt-6">
-              <h3 className="text-lg font-semibold">Specifications</h3>
+              <h3 className="text-lg font-semibold mb-2">Specifications</h3>
               <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
                 {product.specifications.split("\n").map((line, i) => (
                   <li key={i}>{line}</li>
@@ -83,7 +118,6 @@ const AccessoryDetail = () => {
         </div>
       </div>
 
-      {/* Extra images section */}
       <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
         <Link
           to="/products/accessories"
@@ -131,7 +165,7 @@ const AccessoryDetail = () => {
         </Link>
       </div>
 
-      {/* Sticky bottom navbar */}
+      {/* Price navbar */}
       <div className="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-md px-10 py-6 flex justify-between items-center border-t border-gray-800 z-50 shadow-inner">
         <span className="text-white text-lg font-semibold">
           Total: <span className="font-light text-xl">{product.price.toFixed(2)} €</span>
