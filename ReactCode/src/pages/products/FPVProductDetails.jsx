@@ -11,6 +11,7 @@ const FpvProductDetail = () => {
   const { slug } = useParams();
   const [drone, setDrone] = useState(null);
   const [selectedConfig, setSelectedConfig] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [added, setAdded] = useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -32,10 +33,6 @@ const FpvProductDetail = () => {
     fetchDrone();
   }, [slug]);
 
-  if (!drone) {
-    return <div className="text-white text-center py-20">Loading drone details...</div>;
-  }
-
   const handleAddToCart = () => {
     if (!drone || !selectedConfig) return;
 
@@ -51,24 +48,60 @@ const FpvProductDetail = () => {
     setTimeout(() => setAdded(false), 2000);
   };
 
+  if (!drone) {
+    return <div className="text-white text-center py-20">Loading drone details...</div>;
+  }
+
   return (
     <section className="min-h-screen bg-black text-white px-6 pt-16 pb-32">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div className="space-y-4">
-          {drone.images?.map((img, i) => (
-            <img
-              key={i}
-              src={urlFor(img).width(800).url()}
-              alt={`Drone ${i + 1}`}
-              className="rounded-xl object-cover w-full"
-            />
-          ))}
+        <div className="relative w-full h-150 rounded-xl overflow-hidden">
+          {drone.images?.length > 0 && (
+            <>
+              <img
+                src={urlFor(drone.images[currentImageIndex]).width(800).url()}
+                alt={`Drone ${currentImageIndex + 1}`}
+                className="w-full h-full object-contain transition duration-300"
+              />
+
+              <button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === 0 ? drone.images.length - 1 : prev - 1
+                  )
+                }
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full transition z-10"
+              >
+                ‹
+              </button>
+              <button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === drone.images.length - 1 ? 0 : prev + 1
+                  )
+                }
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full transition z-10"
+              >
+                ›
+              </button>
+
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {drone.images.map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`w-2.5 h-2.5 rounded-full ${
+                      idx === currentImageIndex ? "bg-white" : "bg-gray-500"
+                    } transition`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         <div>
           <h1 className="text-4xl font-bold mb-4">{drone.title}</h1>
           <p className="text-gray-400 mb-2 text-lg capitalize">Category: {drone.category}</p>
-
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Choose Configuration</h3>
             <ul className="grid gap-3">
@@ -152,11 +185,14 @@ const FpvProductDetail = () => {
         </Link>
       </div>
 
-      {/* Sticky Bottom Bar */}
+      {/* Price navbar */}
       {selectedConfig && (
         <div className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-center backdrop-blur-sm shadow-lg border-t border-gray-800 z-50">
           <span className="text-white text-lg font-semibold">
-            Eur <span className="font-light text-xl">{selectedConfig.price.toFixed(2)} €</span>
+            Eur{" "}
+            <span className="font-light text-xl">
+              {selectedConfig.price.toFixed(2)} €
+            </span>
           </span>
           <button
             onClick={handleAddToCart}
