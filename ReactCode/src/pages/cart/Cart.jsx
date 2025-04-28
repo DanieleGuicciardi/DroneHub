@@ -151,7 +151,7 @@ const Cart = () => {
                     className="w-5 h-5 accent-blue-600 mt-1"
                   />
                   <label className="text-gray-300 text-base">
-                    Add <Link to="/help&support" className="underline text-blue-500 hover:text-blue-600">Care Refresh</Link> ({careRefreshUnitPrice}€ x drone)
+                    Add <Link to="/help&support" className="underline text-blue-500 hover:text-blue-600">Care Refresh</Link> ({careRefreshUnitPrice}€ x item)
                   </label>
                 </div>
                 {discountUnlocked && careRefresh && (

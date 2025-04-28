@@ -100,7 +100,7 @@ const FPVDrones = () => {
           </div>
         ))}
       </div>
-
+ 
       <div className="mt-24 max-w-5xl mx-auto text-center px-4">
         <h2 className="text-3xl font-bold mb-4">Need a Custom FPV Build?</h2>
         <p className="text-gray-400 text-lg mb-6">
@@ -109,7 +109,7 @@ const FPVDrones = () => {
         </p>
         <Link
           to="/products/customrequest"
-          className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg transition"
+          className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-10 py-4 rounded-full font-semibold shadow-lg text-white transition"
         >
           Request a Custom Build →
         </Link>
