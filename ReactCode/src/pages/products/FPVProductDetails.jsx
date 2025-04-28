@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { client } from "../../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
 import { useCartStore } from "../../store/useCartStore";
+import { motion, AnimatePresence } from "framer-motion";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
@@ -14,6 +15,8 @@ const FpvProductDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [added, setAdded] = useState(false);
   const addToCart = useCartStore((state) => state.addToCart);
+  const [hideNavbar, setHideNavbar] = useState(false);
+  
 
   useEffect(() => {
     const fetchDrone = async () => {
@@ -31,6 +34,23 @@ const FpvProductDetail = () => {
       setSelectedConfig(data?.configurations?.[0] || null);
     };
     fetchDrone();
+
+    //scroll animation on priceNavbar
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const pageHeight = document.body.offsetHeight;
+  
+      // Se siamo vicini al fondo, nascondi navbar
+      if (scrollPosition >= pageHeight - 100) {
+        setHideNavbar(true);
+      } else {
+        setHideNavbar(false);
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+    
   }, [slug]);
 
   const handleAddToCart = () => {
@@ -186,26 +206,36 @@ const FpvProductDetail = () => {
       </div>
 
       {/* Price navbar */}
-      {selectedConfig && (
-        <div className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-center backdrop-blur-sm shadow-lg border-t border-gray-800 z-50">
-          <span className="text-white text-lg font-semibold">
-            Eur{" "}
-            <span className="font-light text-xl">
-              {selectedConfig.price.toFixed(2)} €
-            </span>
-          </span>
-          <button
-            onClick={handleAddToCart}
-            className={`px-6 py-2 rounded-full font-semibold transition shadow-lg ${
-              added
-                ? "bg-green-600 hover:bg-green-700 text-white"
-                : "bg-blue-600 hover:bg-blue-700 text-white"
-            }`}
+      <AnimatePresence>
+        {selectedConfig && !hideNavbar && (
+          <motion.div
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
+            transition={{ type: "tween", duration: 0.65 }}
+            className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-center backdrop-blur-sm shadow-lg border-t border-gray-800 z-50"
           >
-            {added ? "Added to Cart!" : "Add to Cart"}
-          </button>
-        </div>
-      )}
+            <span className="text-white text-lg font-semibold">
+              Eur{" "}
+              <span className="font-light text-xl">
+                {selectedConfig.price.toFixed(2)} €
+              </span>
+            </span>
+            <button
+              onClick={handleAddToCart}
+              className={`px-6 py-2 rounded-full font-semibold transition shadow-lg ${
+                added
+                  ? "bg-green-600 hover:bg-green-700 text-white"
+                  : "bg-blue-600 hover:bg-blue-700 text-white"
+              }`}
+            >
+              {added ? "Added to Cart!" : "Add to Cart"}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+
     </section>
   );
 };

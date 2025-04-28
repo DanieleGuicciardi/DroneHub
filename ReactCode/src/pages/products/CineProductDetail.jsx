@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { client } from "../../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
 import { useCartStore } from "../../store/useCartStore";
+import { motion, AnimatePresence } from "framer-motion";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
@@ -13,6 +14,7 @@ const CineProductDetail = () => {
   const [flyMore, setFlyMore] = useState(false);
   const [added, setAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showBar, setShowBar] = useState(true);
 
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -30,9 +32,20 @@ const CineProductDetail = () => {
       }`;
       const data = await client.fetch(query, { slug });
       setDrone(data);
+      fetchDrone();
+
+      //scroll animation on priceNavbar
+      const handleScroll = () => {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+    
+        setShowBar(scrollPosition < docHeight - 100);
+      };
+    
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
     };
 
-    fetchDrone();
   }, [slug]);
 
   const handleNext = () => {
@@ -211,21 +224,32 @@ const CineProductDetail = () => {
       </div>
 
       {/* Price navbar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-centerbackdrop-blur-sm border-t border-gray-800">
-        <span className="text-white text-lg font-semibold">
-          Eur <span className="font-light text-xl">{totalPrice.toFixed(2)} €</span>
-        </span>
-        <button
-          onClick={handleAddToCart}
-          className={`px-6 py-2 rounded-full font-semibold transition shadow-lg ${
-            added
-              ? "bg-green-600 hover:bg-green-700 text-white"
-              : "bg-blue-600 hover:bg-blue-700 text-white"
-          }`}
-        >
-          {added ? "Added to Cart!" : "Add to Cart"}
-        </button>
-      </div>
+      <AnimatePresence>
+        {showBar && (
+          <motion.div
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
+            transition={{ type: "tween", duration: 0.65 }}
+            className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-center backdrop-blur-sm border-t border-gray-800 z-50 shadow-inner"
+          >
+            <span className="text-white text-lg font-semibold">
+              Eur <span className="font-light text-xl">{totalPrice.toFixed(2)} €</span>
+            </span>
+            <button
+              onClick={handleAddToCart}
+              className={`px-6 py-2 rounded-full font-semibold transition shadow-lg ${
+                added
+                  ? "bg-green-600 hover:bg-green-700 text-white"
+                  : "bg-blue-600 hover:bg-blue-700 text-white"
+              }`}
+            >
+              {added ? "Added to Cart!" : "Add to Cart"}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 };

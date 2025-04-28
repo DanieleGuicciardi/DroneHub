@@ -35,7 +35,9 @@ function App() {
     <>
     <BrowserRouter>
       <ScrollToTop/>
-      <Navbar/>
+      <div className="pt-5 bg-black black">
+        <Navbar/>
+      </div>
       <Routes>
         <Route path="/" element={<Homepage />} />
         
