@@ -32,20 +32,20 @@ const CineProductDetail = () => {
       }`;
       const data = await client.fetch(query, { slug });
       setDrone(data);
-      fetchDrone();
-
+      
       //scroll animation on priceNavbar
       const handleScroll = () => {
         const scrollPosition = window.scrollY + window.innerHeight;
         const docHeight = document.documentElement.scrollHeight;
-    
+        
         setShowBar(scrollPosition < docHeight - 100);
       };
-    
+      
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
     };
-
+    
+    fetchDrone();
   }, [slug]);
 
   const handleNext = () => {
