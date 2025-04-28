@@ -2,17 +2,27 @@ import { useCartStore } from "../../store/useCartStore";
 import { useAuthStore } from "../../store/useAuthStore";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "../../lib/sanityClient";
+
+const builder = imageUrlBuilder(client);
+const urlFor = (source) => builder.image(source);
 
 const Cart = () => {
   const cart = useCartStore((state) => state.cart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const clearCart = useCartStore((state) => state.clearCart);
+  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const isLogged = useAuthStore((state) => state.user);
   const navigate = useNavigate();
 
   const [showPopup, setShowPopup] = useState(false);
 
-  const total = cart.reduce((acc, item) => acc + (item.price || 0), 0);
+  const total = cart.reduce(
+    (acc, item) => acc + (item.price || 0) * item.quantity,
+    0
+  );
 
   const handleCheckout = () => {
     if (!isLogged) {
@@ -25,7 +35,7 @@ const Cart = () => {
   return (
     <section className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white px-6 py-16">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-extrabold mb-12">🛒 Cart</h1>
+        <h1 className="text-4xl font-extrabold mb-12 text-center">🛒 Your Cart</h1>
 
         {cart.length === 0 ? (
           <p className="text-center text-gray-400 text-lg">Your cart is empty. Go grab a drone!</p>
@@ -34,17 +44,45 @@ const Cart = () => {
             {cart.map((item) => (
               <div
                 key={item._id}
-                className="flex justify-between items-center bg-white text-black p-6 rounded-2xl shadow-md hover:shadow-xl transition"
+                className="flex flex-col md:flex-row items-center justify-between gap-6 bg-white text-black p-6 rounded-2xl shadow-md hover:shadow-xl transition"
               >
-                <div>
-                  <h2 className="text-2xl font-bold">{item.title}</h2>
-                  <p className="text-blue-600 text-lg mt-1">{item.price} €</p>
+                <div className="flex items-center gap-6 w-full md:w-auto">
+                  <img
+                    src={item.image?.asset ? urlFor(item.image).width(150).url() : ""}
+                    alt={item.title}
+                    className="w-24 h-24 object-contain rounded-xl shadow"
+                  />
+                  <div>
+                    <h2 className="text-xl font-bold">{item.title}</h2>
+                    <p className="text-blue-600 text-base mt-1">
+                      {item.price} € x {item.quantity} ={" "}
+                      <span className="font-semibold">
+                        {(item.price * item.quantity).toFixed(2)} €
+                      </span>
+                    </p>
+                    <div className="flex items-center gap-3 mt-3">
+                      <button
+                        onClick={() => decreaseQuantity(item._id)}
+                        className="w-8 h-8 rounded-full bg-gray-200 text-black font-bold hover:bg-gray-300 transition"
+                      >
+                        −
+                      </button>
+                      <span className="text-lg font-semibold">{item.quantity}</span>
+                      <button
+                        onClick={() => increaseQuantity(item._id)}
+                        className="w-8 h-8 rounded-full bg-gray-200 text-black font-bold hover:bg-gray-300 transition"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
                 </div>
+
                 <button
                   onClick={() => removeFromCart(item._id)}
-                  className="text-red-600 font-semibold hover:underline text-sm"
+                  className="text-red-600 font-semibold hover:underline text-sm self-start md:self-center"
                 >
-                  Remove
+                  Remove all
                 </button>
               </div>
             ))}
