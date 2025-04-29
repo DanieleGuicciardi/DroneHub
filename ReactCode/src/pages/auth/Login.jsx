@@ -19,23 +19,23 @@ const Login = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-gray-800/60 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-gray-700">
+    <section className="min-h-screen bg-black text-white flex items-center justify-center px-4 py-20">
+      <div className="w-full max-w-lg p-10 rounded-3xl shadow-xl border border-gray-800 bg-gradient-to-br from-gray-900 via-gray-950 to-black">
         {!user ? (
           <>
-            <h1 className="text-3xl font-extrabold mb-6 text-center text-white drop-shadow-md">
-              Login to <span className="text-blue-500">DroneHub</span>
+            <h1 className="text-4xl font-extrabold mb-8 text-center">
+              Access <span className="text-blue-500">DroneHub</span>
             </h1>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
+                <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-300">
+                  Email address
                 </label>
                 <input
                   id="email"
                   type="email"
-                  className="w-full p-3 rounded-md bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded-xl bg-black text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 placeholder-gray-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
@@ -43,13 +43,13 @@ const Login = () => {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium mb-2">
+                <label htmlFor="password" className="block text-sm font-medium mb-2 text-gray-300">
                   Password
                 </label>
                 <input
                   id="password"
                   type="password"
-                  className="w-full p-3 rounded-md bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded-xl bg-black text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 placeholder-gray-500"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
@@ -58,7 +58,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-md font-semibold text-white shadow-lg transition-all"
+                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-full font-semibold text-white shadow-lg transition-all"
               >
                 Login
               </button>
@@ -74,7 +74,7 @@ const Login = () => {
                 logout();
                 navigate("/");
               }}
-              className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md font-semibold shadow-lg transition-all"
+              className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-full font-semibold shadow-lg transition-all"
             >
               Logout
             </button>
