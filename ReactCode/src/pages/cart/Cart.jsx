@@ -33,7 +33,7 @@ const Cart = () => {
 
   // careRefresh add + discount
   let careRefreshTotal = careRefreshUnitPrice * totalItems;
-  const discountUnlocked = totalItems > 3 || cartTotal > 3000;
+  const discountUnlocked = totalItems > 3 || cartTotal > 2000;
 
   if (discountUnlocked) {
     careRefreshTotal *= 0.8; 
@@ -136,9 +136,6 @@ const Cart = () => {
                 </div>
               ))}
             </div>
-
-            {/* br */}
-            <hr className="border-gray-700 my-10" />
 
             {/* price sect */}
             <div className="flex flex-col md:flex-row justify-between gap-10">
