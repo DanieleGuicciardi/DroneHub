@@ -66,7 +66,7 @@ const OrderInfo = () => {
   return (
     <section className="min-h-screen bg-black text-white px-6 py-16">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-        {/* Left - Form */}
+        {/* left part*/}
         <form className="space-y-10">
           <div>
             <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
@@ -145,7 +145,7 @@ const OrderInfo = () => {
           </div>
         </form>
 
-        {/* Right - Summary */}
+        {/* right part*/}
         <div className="border-l border-gray-700 pl-10 flex flex-col justify-between">
           <div>
             <h2 className="text-xl font-bold mb-6">Order Summary</h2>

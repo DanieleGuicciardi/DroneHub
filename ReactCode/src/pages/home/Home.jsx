@@ -148,7 +148,7 @@ const Home = () => {
         description="The wild side of flying — FPV drones give you total control and unmatched speed for racing, freestyle, or bold cinematic scenes."
         videoRef={fpvVideoRef}
         src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1745413955/Fpvvideo_Nfxrnu_e5q3b6.mp4"
-        ctaColor="bg-blue-600 hover:bg-pink-700"
+        ctaColor="bg-blue-600 hover:bg-blue-700"
         ctaLink="/products/fpv"
         reverse
       />

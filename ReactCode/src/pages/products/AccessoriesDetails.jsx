@@ -179,7 +179,7 @@ const AccessoryDetail = () => {
         </Link>
       </div>
 
-      {/* Price navbar */}
+      {/* price navbar */}
       <AnimatePresence>
         {showBar && (
           <motion.div

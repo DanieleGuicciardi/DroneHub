@@ -40,7 +40,6 @@ const FpvProductDetail = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
       const pageHeight = document.body.offsetHeight;
   
-      // Se siamo vicini al fondo, nascondi navbar
       if (scrollPosition >= pageHeight - 100) {
         setHideNavbar(true);
       } else {
@@ -205,7 +204,7 @@ const FpvProductDetail = () => {
         </Link>
       </div>
 
-      {/* Price navbar */}
+      {/* price navbar */}
       <AnimatePresence>
         {selectedConfig && !hideNavbar && (
           <motion.div
