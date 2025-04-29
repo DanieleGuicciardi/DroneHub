@@ -41,7 +41,7 @@ const Home = () => {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-5xl md:text-7xl font-extrabold mb-4"
+        className="text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-white via-blue-400 to-blue-600 bg-clip-text text-transparent"
       >
         DroneHub
       </motion.h1>
@@ -59,18 +59,22 @@ const Home = () => {
         transition={{ delay: 0.8 }}
         className="mt-10 flex gap-6"
       >
+
         <button
           onClick={() => stabilizedRef.current.scrollIntoView({ behavior: "smooth" })}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3 rounded-full text-white font-semibold hover:scale-105 transition"
+          className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
         >
           Stabilized
         </button>
+
         <button
           onClick={() => fpvRef.current.scrollIntoView({ behavior: "smooth" })}
-          className="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3 rounded-full text-white font-semibold hover:scale-105 transition"
+          className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
         >
           FPV
         </button>
+
+
       </motion.div>
     </div>
   );
@@ -144,7 +148,7 @@ const Home = () => {
         description="The wild side of flying — FPV drones give you total control and unmatched speed for racing, freestyle, or bold cinematic scenes."
         videoRef={fpvVideoRef}
         src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1745413955/Fpvvideo_Nfxrnu_e5q3b6.mp4"
-        ctaColor="bg-pink-600 hover:bg-pink-700"
+        ctaColor="bg-blue-600 hover:bg-pink-700"
         ctaLink="/products/fpv"
         reverse
       />

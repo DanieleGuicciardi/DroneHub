@@ -28,7 +28,7 @@ const Products = () => {
         >
           <Link
             to="/products/cine"
-            className="relative group h-60 rounded-xl overflow-hidden shadow-lg block"
+            className="relative group h-70 rounded-xl overflow-hidden shadow-lg block"
           >
             <motion.img
               src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1744716066/CineDrones_csinta.png"
@@ -50,7 +50,7 @@ const Products = () => {
         >
           <Link
             to="/products/fpv"
-            className="relative group h-60 rounded-xl overflow-hidden shadow-lg block"
+            className="relative group h-70 rounded-xl overflow-hidden shadow-lg block"
           >
             <motion.img
               src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1744716069/FPVDrones_mgwp4u.webp"
@@ -74,7 +74,7 @@ const Products = () => {
       >
         <Link
           to="/products/accessories"
-          className="relative group h-40 rounded-xl overflow-hidden shadow-lg block"
+          className="relative group h-50 rounded-xl overflow-hidden shadow-lg block"
         >
           <motion.img
             src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1744716051/Accessories_rlamlx.jpg"
@@ -91,11 +91,11 @@ const Products = () => {
       </motion.div>
 
       <motion.div
-        className="text-center mt-20"
+        className="text-center mt-40"
         variants={fadeInUp}
         transition={{ duration: 0.5, delay: 0.8 }}
       >
-        <p className="text-xl mb-4">Are you a business or professional operator?</p>
+        <p className="text-xl mb-4 ">Are you a business or professional operator?</p>
         <Link
           to="/products/epdrones"
           className="inline-flex mt-3 items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white font-semibold rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 group border border-gray-700"

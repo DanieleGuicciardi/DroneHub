@@ -42,7 +42,7 @@ const Navbar = () => {
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between relative">
             <Link to="/" className="flex items-center gap-2 z-10">
-              <img src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1744716075/headLogo_ooposs.png" alt="Logo" className="h-8" />
+              <img src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745839326/ChatGPT_Image_28_apr_2025_13_22_00_qpvete.png" alt="Logo" className="h-15 " />
             </Link>
 
             <div className="absolute left-1/2 -translate-x-1/2">

@@ -13,19 +13,38 @@ const faqs = [
       "We accept returns within 14 days of delivery for unused products in original packaging. Shipping costs are non-refundable.",
   },
   {
-    question: "Which payment methods are accepted?",
-    answer:
-      "We accept all major credit cards, PayPal, and bank transfers. For enterprise orders, invoicing is available.",
-  },
-  {
     question: "Do you offer warranty for drones?",
     answer:
       "Yes, all drones come with a 1-year limited warranty covering manufacturing defects. Accidental damage is not covered.",
   },
   {
+    question: "What is Care Refresh and how does it work?",
+    answer: (
+      <>
+        <p className="mb-3">
+          Care Refresh is an optional protection plan available at checkout. It provides extended coverage in case your drone gets damaged, broken, or even lost.
+        </p>
+        <p className="mb-3">
+          The coverage lasts <strong>2 months</strong> from the activation date of the drone. In case of incidents, we offers fast replacement or repair — depending on the type of damage — and in some cases, the service may be <strong>free</strong>.
+        </p>
+        <p className="mb-3">
+          The plan costs <strong>€38 per item</strong>. However, if your order includes more than <strong>3 items</strong> or exceeds a value of <strong>€2000</strong>, you automatically unlock a <strong>20% discount</strong> on the total Care Refresh cost.
+        </p>
+        <p className="text-xs text-gray-400 italic">
+          Care Refresh must be selected during checkout to be valid.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Which payment methods are accepted?",
+    answer:
+      "We accept all major credit cards, PayPal, and bank transfers. For enterprise orders, invoicing is available.",
+  },
+  {
     question: "Can I modify or cancel my order?",
     answer:
-      "If the order hasn’t been shipped yet, yes. Contact us as soon as possible via email or live chat.",
+      "If the order hasn’t been shipped yet, yes. Contact us as soon as possible via email.",
   },
 ];
 
