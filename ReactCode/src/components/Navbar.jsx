@@ -4,11 +4,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaShoppingCart } from "react-icons/fa";
 
 import { useCartStore } from "../store/useCartStore";
+import { useAuthStore } from "../store/useAuthStore";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const location = useLocation();
   const cartCount = useCartStore((state) => state.cart.length);
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +42,7 @@ const Navbar = () => {
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between relative">
             <Link to="/" className="flex items-center gap-2 z-10">
-              <img src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1744716075/headLogo_ooposs.png" alt="Logo" className="h-8" />
+              <img src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745839326/ChatGPT_Image_28_apr_2025_13_22_00_qpvete.png" alt="Logo" className="h-15 " />
             </Link>
 
             <div className="absolute left-1/2 -translate-x-1/2">
@@ -57,9 +61,21 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/login" className="hover:text-blue-400 transition-colors">
-                  Login
-                </Link>
+                {!user ? (
+                  <Link to="/login" className="hover:text-blue-400 transition-colors">
+                    Login
+                  </Link>
+                ) : (
+                <button
+                  onClick={() => {
+                    const confirmLogout = window.confirm("Are you sure you want to logout?");
+                    if (confirmLogout) logout();
+                  }}
+                  className="hover:text-red-400 transition-colors"
+                >
+                  Logout
+                </button>
+                )}
               </li>
               <li className="relative">
                 <Link to="/cart" className="hover:text-blue-400 transition-colors flex items-center">

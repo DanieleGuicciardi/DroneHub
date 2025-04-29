@@ -1,34 +1,15 @@
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const Home = () => {
-  const siteTitle = "DroneHub";
-  const subtitle = "What kind of pilot are you?";
-  const options = ["Stabilized", "FPV"];
-
-  const containerRef = useRef(null);
   const stabilizedRef = useRef(null);
   const fpvRef = useRef(null);
 
   const stabilizedVideoRef = useRef(null);
   const fpvVideoRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
-
-  const scrollToSection = (ref) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // function for automatic player video
   useEffect(() => {
     const videos = [stabilizedVideoRef.current, fpvVideoRef.current];
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -54,148 +35,143 @@ const Home = () => {
     };
   }, []);
 
-  return (
-    <section ref={containerRef} className="bg-black text-white overflow-hidden">
-      <div className="h-screen flex flex-col justify-center items-center">
-        <motion.h1
-          style={{ scale, y }}
-          className="text-5xl md:text-7xl font-extrabold tracking-wide text-center"
-        >
-          {siteTitle}
-        </motion.h1>
+  const HeroSection = () => (
+    <div className="h-screen bg-black flex flex-col justify-center items-center text-center text-white px-6">
+      <motion.h1
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-white via-blue-400 to-blue-600 bg-clip-text text-transparent"
+      >
+        DroneHub
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 1 }}
+        className="text-xl md:text-2xl text-gray-400"
+      >
+        What kind of pilot are you?
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="mt-10 flex gap-6"
+      >
 
+        <button
+          onClick={() => stabilizedRef.current.scrollIntoView({ behavior: "smooth" })}
+          className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
+        >
+          Stabilized
+        </button>
+
+        <button
+          onClick={() => fpvRef.current.scrollIntoView({ behavior: "smooth" })}
+          className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
+        >
+          FPV
+        </button>
+
+
+      </motion.div>
+    </div>
+  );
+
+  const VideoSection = ({
+    title,
+    description,
+    videoRef,
+    src,
+    ctaColor,
+    reverse = false,
+    ctaLink = "/products"
+  }) => (
+    <div
+      ref={reverse ? fpvRef : stabilizedRef}
+      className="relative h-screen w-full overflow-hidden"
+    >
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        loop
+        playsInline
+        className="absolute w-full h-full object-cover"
+      />
+  
+      <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center px-6 text-center text-white z-10">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="text-2xl md:text-3xl mt-4 text-gray-300 text-center"
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-5xl font-bold mb-4"
         >
-          {subtitle}
+          {title}
         </motion.h2>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="mt-10 flex flex-col md:flex-row gap-6"
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="max-w-2xl text-lg text-gray-300 mb-6 leading-relaxed"
         >
-          <button
-            onClick={() => scrollToSection(stabilizedRef)}
-            className="w-60 px-8 py-4 text-xl font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
-          >
-            Stabilized
-          </button>
-          <button
-            onClick={() => scrollToSection(fpvRef)}
-            className="w-60 px-8 py-4 text-xl font-semibold rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
-          >
-            FPV
-          </button>
-        </motion.div>
-      </div>
-
-      {/* CINE */}
-      <motion.div
-        ref={stabilizedRef}
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: false, amount: 0.3 }}
-        className="min-h-screen bg-white text-black px-6 py-20 flex flex-col md:flex-row items-center gap-10"
-      >
-        <div className="md:w-1/2 space-y-6">
-          <h2 className="text-4xl font-bold">Stabilized Drones</h2>
-          <p className="text-lg text-gray-700">
-            Whether you're a filmmaker, a content creator or simply someone who wants to capture life's moments from a new
-            perspective — our <strong>Stabilized Drones</strong> are your perfect flight companions.
-            Equipped with ultra-precise GPS systems and gimbals that smooth out every shake, they let you shoot breathtaking 4K footage with cinematic elegance.
-            <br /><br />
-            Ideal for professional shoots, real estate showcases, nature documentaries or travel vlogs — they're silent, steady and incredibly easy to fly. Turn your ideas into art, from the sky.
-          </p>
-          <button className="mt-4 bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
-            View Products
-          </button>
-        </div>
-        <motion.div
-          className="md:w-1/2 w-full h-64 md:h-96 bg-gray-200 rounded-xl overflow-hidden"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <video
-            ref={stabilizedVideoRef}
-            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715537/CineVideo_kwp4jr.mp4"
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* FPV */}
-      <motion.div
-        ref={fpvRef}
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: false, amount: 0.3 }}
-        className="min-h-screen bg-gray-900 text-white px-6 py-20 flex flex-col md:flex-row-reverse items-center gap-10"
-      >
-        <div className="md:w-1/2 space-y-6">
-          <h2 className="text-4xl font-bold text-white">FPV Drones</h2>
-          <p className="text-lg text-gray-300">
-            Welcome to the <strong>wild side of flying</strong>. FPV drones aren’t just tools — they’re adrenaline machines.
-            With full manual control and immersive first-person view, you don’t just fly: you become the drone.
-            <br /><br />
-            Chase cars, dive buildings, zip through forests or film action sequences with impossible angles.
-            Perfect for racing, freestyle, or cinematic shoots that demand raw speed and control.
-            <strong> Only for the brave.</strong>
-          </p>
-          <button className="mt-4 bg-white text-black px-6 py-3 rounded-md hover:bg-gray-200 transition">
-            View Products
-          </button>
-        </div>
-        <motion.div
-          className="md:w-1/2 w-full h-64 md:h-96 bg-gray-700 rounded-xl overflow-hidden"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <video
-            ref={fpvVideoRef}
-            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715501/FPVVideo_nfxrnu.mp4"
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: false, amount: 0.3 }}
-        className="bg-black text-white text-center px-6 py-24"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Still not sure what to choose?
-        </h2>
-        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-          Discover our full collection and find your flying identity. Whether you want cinematic stability or heart-pounding FPV adrenaline, DroneHub is your launchpad.
-        </p>
-
+          {description}
+        </motion.p>
         <motion.a
-          href="/products"
+          href={ctaLink}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          className="inline-block px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transition-all"
+          className={`px-8 py-3 ${ctaColor} text-white font-semibold rounded-full shadow-md transition`}
+        >
+          View Products
+        </motion.a>
+      </div>
+    </div>
+  );
+
+  return (
+    <section className="bg-black text-white overflow-hidden">
+      <HeroSection />
+
+      <VideoSection
+        title="Stabilized Drones"
+        description="Ideal for filmmakers, real estate, and smooth cinematic shots. GPS precision and elegant 4K footage from above."
+        videoRef={stabilizedVideoRef}
+        src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1745413389/Cinevideo_Kwp4jr_jvfprh.mp4"
+        ctaColor="bg-blue-600 hover:bg-blue-700"
+        ctaLink="/products/cine"
+      />
+
+      <VideoSection
+        title="FPV Drones"
+        description="The wild side of flying — FPV drones give you total control and unmatched speed for racing, freestyle, or bold cinematic scenes."
+        videoRef={fpvVideoRef}
+        src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1745413955/Fpvvideo_Nfxrnu_e5q3b6.mp4"
+        ctaColor="bg-blue-600 hover:bg-blue-700"
+        ctaLink="/products/fpv"
+        reverse
+      />
+
+      <div className="bg-black py-24 text-center px-6">
+        <motion.h3
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl font-bold mb-6"
+        >
+          Still not sure what to choose?
+        </motion.h3>
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg mb-8">
+          Explore our full catalog and discover your pilot personality. DroneHub is your skyward gateway.
+        </p>
+        <a
+          href="/products"
+          className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-10 py-4 rounded-full font-semibold shadow-lg text-white transition"
         >
           Explore All Drones
-        </motion.a>
-      </motion.div>
+        </a>
+      </div>
     </section>
   );
 };

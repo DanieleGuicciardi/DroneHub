@@ -6,10 +6,31 @@ import { Link } from "react-router-dom";
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
+const categorySections = [
+  {
+    title: "ActionCams",
+    category: "ActionCam",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414988/Actioncamvideo-1_Yla3bx_sujpna.mp4"
+  },
+  {
+    title: "Stabilizers",
+    category: "Stabilizers",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414734/Stabilizersvideo_crbii4.mp4"
+  },
+  {
+    title: "Controllers",
+    category: "RemoteController",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745415017/Controllersvideo_Qpeqxf_w23lq8.mp4"
+  },
+  {
+    title: "Other Accessories",
+    category: "Accessory",
+    video: "https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414995/Otheraccessoriesvideo_Yqpvc7_stnmle.mp4"
+  },
+];
+
 const Accessories = () => {
   const [products, setProducts] = useState([]);
-  const [filtered, setFiltered] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,61 +44,68 @@ const Accessories = () => {
       }`;
       const data = await client.fetch(query);
       setProducts(data);
-      setFiltered(data);
     };
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (selectedCategory === "all") {
-      setFiltered(products);
-    } else {
-      setFiltered(products.filter(p => p.category === selectedCategory));
-    }
-  }, [selectedCategory, products]);
-
-  const categories = [...new Set(products.map((p) => p.category).filter(Boolean))];
+  const getCategoryProducts = (cat) =>
+    products.filter((p) => p.category?.toLowerCase() === cat.toLowerCase());
 
   return (
-    <div className="min-h-screen bg-black text-white px-4 py-16">
-      <h1 className="text-4xl font-bold mb-8 text-center">Accessories & Add-ons</h1>
+    <section className="min-h-screen bg-black text-white px-4 py-16">
+      <h1 className="text-4xl font-extrabold text-center mb-10">Accessories & Add-ons</h1>
 
-      <div className="flex justify-center mb-10">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="bg-gray-800 text-white px-4 py-2 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-        >
-          <option value="all">All categories</option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-      </div>
+      <p className="max-w-3xl mx-auto text-center text-gray-400 text-lg mb-16 leading-relaxed">
+        Boost your drone setup with the perfect add-ons. Explore dedicated sections for controllers, power solutions, cases and more.
+      </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {filtered.map((product) => (
-          <Link
-            to={`/products/accessories/${product.slug.current}`}
-            key={product._id}
-            className="group bg-white text-black p-4 rounded-xl shadow hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer block"
-          >
-            <img
-              src={urlFor(product.images?.[0]).width(500).url()}
-              alt={product.title}
-              className="w-full h-60 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
-            />
-            <h2 className="text-xl font-semibold">{product.title}</h2>
-            <p className="text-yellow-600 font-bold mt-1">
-              {product.price} €
-            </p>
-            <p className="text-sm text-gray-600 capitalize">{product.category}</p>
-          </Link>
-        ))}
-      </div>
-    </div>
+      {categorySections.map(({ title, category, video }) => {
+        const items = getCategoryProducts(category);
+        if (items.length === 0) return null;
+
+        return (
+          <div key={category} className="mb-24 max-w-6xl mx-auto">
+            <div className="mb-6 rounded-xl overflow-hidden shadow-lg">
+              <h2 className="text-3xl font-bold mb-9 border-l-4 border-blue-500 pl-4">{title}</h2>
+              <video
+                src={video}
+                muted
+                autoPlay
+                loop
+                playsInline
+                className="w-full mb-3 rounded-3xl h-64 md:h-96 object-cover"
+              />
+            </div>
+
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+              {items.map((item) => (
+                <div
+                  key={item._id}
+                  className="flex flex-col items-center group hover:-translate-y-2 transition-transform duration-300"
+                >
+                  <img
+                    src={urlFor(item.images?.[0]).width(800).url()}
+                    alt={item.title}
+                    className="w-48 h-48 object-contain mb-4 drop-shadow-xl transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <h3 className="text-xl font-semibold group-hover:text-blue-400 transition">
+                    {item.title}
+                  </h3>
+                  <p className="text-green-400 font-bold mt-1">{item.price} €</p>
+                  <Link
+                    to={`/products/accessories/${item.slug.current}`}
+                    className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold shadow-md transition"
+                  >
+                    Buy Now
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </section>
   );
 };
 

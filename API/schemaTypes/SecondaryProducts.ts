@@ -41,8 +41,7 @@ export const secondaryproducts = defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'array',
-      of: [{ type: 'block' }],
+      type: 'text',
     }),
 
     defineField({

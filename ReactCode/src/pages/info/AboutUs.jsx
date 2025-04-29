@@ -60,7 +60,7 @@ const AboutUs = () => {
           viewport={{ once: false, amount: 0.3 }}
         >
           <video
-            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1744715612/PersonalVideo_spiw1x.mp4"
+            src="https://res.cloudinary.com/dgtwxbofy/video/upload/v1745414496/0423_hvihhw.mp4"
             controls
             className="w-full h-auto rounded-xl"
             autoPlay
