@@ -50,7 +50,6 @@ const Navbar = () => {
           className="w-full bg-black/80 backdrop-blur text-white px-4 py-4 fixed top-0 z-50 shadow-md"
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between relative">
-            {/* Logo (clickable) */}
             <button onClick={handleHomeClick} className="flex items-center gap-2 z-10">
               <img
                 src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745839326/ChatGPT_Image_28_apr_2025_13_22_00_qpvete.png"
@@ -59,7 +58,6 @@ const Navbar = () => {
               />
             </button>
 
-            {/* Site Name (always visible) */}
             <div className="absolute left-1/2 -translate-x-1/2">
               <button
                 onClick={handleHomeClick}
@@ -69,7 +67,7 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Desktop Menu */}
+            {/* desktop */}
             <ul className="hidden md:flex items-center space-x-6 text-lg font-medium z-10">
               <li>
                 <button onClick={() => navigate("/products")} className="hover:text-blue-400 transition-colors">
@@ -108,7 +106,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            {/* Hamburger for mobile */}
+            {/* mobile*/}
             <button
               className="md:hidden z-20"
               onClick={() => setMenuOpen((prev) => !prev)}
@@ -117,7 +115,6 @@ const Navbar = () => {
               {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
 
-            {/* Mobile Menu */}
             <AnimatePresence>
               {menuOpen && (
                 <motion.ul

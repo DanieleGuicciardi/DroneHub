@@ -1,47 +1,65 @@
 import { useEffect, useRef, useLayoutEffect } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { motion, useScroll, useTransform, useTime } from "framer-motion";
-import { degreesToRadians } from "popmotion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-// === DRONE 3D MODEL WITH TREMBLE AND LIFT ===
-
+// model manipulation
 const DroneModel = () => {
   const { scene } = useGLTF("/models/drone.glb");
   const ref = useRef();
   const { scrollYProgress } = useScroll();
+  const landedRef = useRef(false);
+  const landingStart = useRef(null);
 
   useLayoutEffect(() => {
     if (ref.current) {
       ref.current.rotation.set(0, Math.PI, 0);
-      ref.current.scale.set(0.1, 0.1, 0.1); // ⬅️ più piccolo
+      ref.current.scale.set(0.1, 0.1, 0.1);
+      ref.current.position.set(0.5, 8, 0); 
     }
   }, []);
 
   useFrame(() => {
-    if (ref.current) {
-      const scroll = scrollYProgress.get();
+    const drone = ref.current;
+    if (!drone) return;
 
-      const trembleY = Math.sin(Date.now() * 0.01) * 0.01;
-      const tiltX = Math.sin(Date.now() * 0.005) * 0.02;
-      const tiltZ = Math.sin(Date.now() * 0.007) * 0.02;
-      const liftY = scroll < 0.1 ? 0 : (scroll - 0.1) * 2.5;
+    const scroll = scrollYProgress.get();
 
-      // ⬅️ Sposta a destra (asse X), solleva su Y
-      ref.current.position.set(0.5, 3 + trembleY + liftY, 0);
-      ref.current.rotation.x = tiltX;
-      ref.current.rotation.z = tiltZ;
+    const trembleY = Math.sin(Date.now() * 0.01) * 0.01;
+    const tiltX = Math.sin(Date.now() * 0.005) * 0.02;
+    const tiltZ = Math.sin(Date.now() * 0.007) * 0.02;
+    const liftY = scroll < 0.1 ? 0 : (scroll - 0.1) * 2.5;
+
+    // landing animation
+    if (!landedRef.current) {
+      if (!landingStart.current) landingStart.current = Date.now();
+      const elapsed = (Date.now() - landingStart.current) / 1000;
+      const y = Math.max(3, 8 - elapsed * 5); 
+
+      drone.position.set(0.5, y + trembleY + liftY, 0);
+
+      if (y <= 3) {   //stop landing animation at 3
+        landedRef.current = true;
+        landingStart.current = null;
+      }
+    } else {
+      // shake animation
+      drone.position.set(0.5, 3 + trembleY + liftY, 0);
     }
+
+    drone.rotation.x = tiltX;
+    drone.rotation.z = tiltZ;
   });
 
   return <primitive ref={ref} object={scene} />;
 };
 
+
 function Scene() {
   const gl = useThree((state) => state.gl);
 
   useFrame(({ camera }) => {
-    camera.position.set(0, 5, 6); // Fissa la camera
+    camera.position.set(0, 5, 6); 
     camera.lookAt(0, 0, 0);
   });
 
@@ -114,7 +132,7 @@ const Intro3D = ({ onScrollTo }) => {
 };
 
 
-// === HOMEPAGE ===
+// homepage
 
 const Home = () => {
   const stabilizedRef = useRef(null);
