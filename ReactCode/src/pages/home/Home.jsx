@@ -1,5 +1,138 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useLayoutEffect } from "react";
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+// model manipulation
+const DroneModel = () => {
+  const { scene } = useGLTF("/models/drone.glb");
+  const ref = useRef();
+  const { scrollYProgress } = useScroll();
+  const landedRef = useRef(false);
+  const landingStart = useRef(null);
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      ref.current.rotation.set(0, Math.PI, 0);
+      ref.current.scale.set(0.1, 0.1, 0.1);
+      ref.current.position.set(0.5, 8, 0); 
+    }
+  }, []);
+
+  useFrame(() => {
+    const drone = ref.current;
+    if (!drone) return;
+
+    const scroll = scrollYProgress.get();
+
+    const trembleY = Math.sin(Date.now() * 0.01) * 0.01;
+    const tiltX = Math.sin(Date.now() * 0.005) * 0.02;
+    const tiltZ = Math.sin(Date.now() * 0.007) * 0.02;
+    const liftY = scroll < 0.1 ? 0 : (scroll - 0.1) * 2.5;
+
+    // landing animation
+    if (!landedRef.current) {
+      if (!landingStart.current) landingStart.current = Date.now();
+      const elapsed = (Date.now() - landingStart.current) / 1000;
+      const y = Math.max(3, 8 - elapsed * 5); 
+
+      drone.position.set(0.5, y + trembleY + liftY, 0);
+
+      if (y <= 3) {   //stop landing animation at 3
+        landedRef.current = true;
+        landingStart.current = null;
+      }
+    } else {
+      // shake animation
+      drone.position.set(0.5, 3 + trembleY + liftY, 0);
+    }
+
+    drone.rotation.x = tiltX;
+    drone.rotation.z = tiltZ;
+  });
+
+  return <primitive ref={ref} object={scene} />;
+};
+
+
+function Scene() {
+  const gl = useThree((state) => state.gl);
+
+  useFrame(({ camera }) => {
+    camera.position.set(0, 5, 6); 
+    camera.lookAt(0, 0, 0);
+  });
+
+  return (
+    <>
+      <ambientLight intensity={1.5} />
+      <DroneModel />
+    </>
+  );
+}
+
+const Intro3D = ({ onScrollTo }) => {
+  const { scrollYProgress } = useScroll();
+
+  const scaleTitle = useTransform(scrollYProgress, [0, 0.2], [1.8, 0.2]);
+  const yTitle = useTransform(scrollYProgress, [0, 0.2], [0, -100]);
+
+  const yCanvas = useTransform(scrollYProgress, [0, 0.2], [0, 500]);
+
+  return (
+    <div className="relative h-screen bg-black text-white overflow-hidden">
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: yCanvas }}
+      >
+        <Canvas gl={{ antialias: false }}>
+          <Scene />
+        </Canvas>
+      </motion.div>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-6">
+        <motion.h1
+          style={{ scale: scaleTitle, y: yTitle }}
+          className="text-4xl md:text-6xl font-bold text-white mb-15"
+        >
+          DroneHub
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="text-xl md:text-2xl text-gray-300 mb-5"
+        >
+          What kind of pilot are you?
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="flex gap-6"
+        >
+          <button
+            onClick={() => onScrollTo("stabilized")}
+            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
+          >
+            Stabilized
+          </button>
+          <button
+            onClick={() => onScrollTo("fpv")}
+            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
+          >
+            FPV
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+
+// homepage
 
 const Home = () => {
   const stabilizedRef = useRef(null);
@@ -35,49 +168,10 @@ const Home = () => {
     };
   }, []);
 
-  const HeroSection = () => (
-    <div className="h-screen bg-black flex flex-col justify-center items-center text-center text-white px-6">
-      <motion.h1
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-5xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-white via-blue-400 to-blue-600 bg-clip-text text-transparent"
-      >
-        DroneHub
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 1 }}
-        className="text-xl md:text-2xl text-gray-400"
-      >
-        What kind of pilot are you?
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="mt-10 flex gap-6"
-      >
-
-        <button
-          onClick={() => stabilizedRef.current.scrollIntoView({ behavior: "smooth" })}
-          className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
-        >
-          Stabilized
-        </button>
-
-        <button
-          onClick={() => fpvRef.current.scrollIntoView({ behavior: "smooth" })}
-          className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
-        >
-          FPV
-        </button>
-
-
-      </motion.div>
-    </div>
-  );
+  const scrollToSection = (section) => {
+    if (section === "stabilized") stabilizedRef.current.scrollIntoView({ behavior: "smooth" });
+    if (section === "fpv") fpvRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const VideoSection = ({
     title,
@@ -100,7 +194,7 @@ const Home = () => {
         playsInline
         className="absolute w-full h-full object-cover"
       />
-  
+
       <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center px-6 text-center text-white z-10">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
@@ -131,8 +225,8 @@ const Home = () => {
   );
 
   return (
-    <section className="bg-black text-white overflow-hidden">
-      <HeroSection />
+    <div className="bg-black text-white overflow-hidden scroll-smooth">
+      <Intro3D onScrollTo={scrollToSection} />
 
       <VideoSection
         title="Stabilized Drones"
@@ -172,7 +266,7 @@ const Home = () => {
           Explore All Drones
         </a>
       </div>
-    </section>
+    </div>
   );
 };
 
