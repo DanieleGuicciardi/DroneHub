@@ -87,7 +87,7 @@ const AccessoryDetail = () => {
                     prev === 0 ? product.images.length - 1 : prev - 1
                   )
                 }
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full z-10"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white px-3 py-4 rounded-full z-10"
               >
                 ‹
               </button>
@@ -97,7 +97,7 @@ const AccessoryDetail = () => {
                     prev === product.images.length - 1 ? 0 : prev + 1
                   )
                 }
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full z-10"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white px-3 py-4 rounded-full z-10"
               >
                 ›
               </button>
@@ -140,7 +140,7 @@ const AccessoryDetail = () => {
 
       <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
         <Link
-          to="/products/accessories"
+          to="/products"
           className="relative h-64 bg-gray-800 rounded-xl overflow-hidden group"
         >
           <img
@@ -150,7 +150,7 @@ const AccessoryDetail = () => {
           />
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
           <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
-            Accessories
+            Drones
           </span>
         </Link>
 
