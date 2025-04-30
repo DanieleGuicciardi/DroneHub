@@ -32,20 +32,25 @@ const CineProductDetail = () => {
       }`;
       const data = await client.fetch(query, { slug });
       setDrone(data);
-      
-      //scroll animation on priceNavbar
-      const handleScroll = () => {
+  
+      setTimeout(() => {
         const scrollPosition = window.scrollY + window.innerHeight;
         const docHeight = document.documentElement.scrollHeight;
-        
         setShowBar(scrollPosition < docHeight - 100);
-      };
-      
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
+      }, 100);
     };
-    
+  
     fetchDrone();
+    
+    //scroll animation on priceNavbar 
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      setShowBar(scrollPosition < docHeight - 100);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [slug]);
 
   const handleNext = () => {

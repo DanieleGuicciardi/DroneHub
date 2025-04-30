@@ -32,24 +32,27 @@ const FpvProductDetail = () => {
       const data = await client.fetch(query, { slug });
       setDrone(data);
       setSelectedConfig(data?.configurations?.[0] || null);
+  
+      setTimeout(() => {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const pageHeight = document.body.offsetHeight;
+  
+        setHideNavbar(scrollPosition >= pageHeight - 100);
+      }, 100);
     };
+  
     fetchDrone();
-
+    
     //scroll animation on priceNavbar
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
       const pageHeight = document.body.offsetHeight;
   
-      if (scrollPosition >= pageHeight - 100) {
-        setHideNavbar(true);
-      } else {
-        setHideNavbar(false);
-      }
+      setHideNavbar(scrollPosition >= pageHeight - 100);
     };
   
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-    
   }, [slug]);
 
   const handleAddToCart = () => {

@@ -29,20 +29,26 @@ const AccessoryDetail = () => {
       }`;
       const data = await client.fetch(query, { slug });
       setProduct(data);
+  
+      // delay scroll to always shoe the priceNavbar
+      setTimeout(() => {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        setShowBar(scrollPosition < docHeight - 100);
+      }, 100);
     };
+  
     fetchProduct();
 
     //scroll animation on priceNavbar
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
-  
       setShowBar(scrollPosition < docHeight - 100);
     };
   
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-
   }, [slug]);
 
   const handleAddToCart = () => {
