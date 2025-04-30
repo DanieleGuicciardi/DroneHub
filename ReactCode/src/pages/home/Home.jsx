@@ -1,5 +1,87 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useLayoutEffect } from "react";
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { motion, useScroll, useTransform, useTime } from "framer-motion";
+import { degreesToRadians, progress, mix } from "popmotion";
+
+// 3D animation
+
+const icosahedronColor = "#00FFFF";
+const starColor = "#FFFFFF";      
+
+const Icosahedron = () => (
+  <mesh rotation-x={0.35}>
+    <icosahedronGeometry args={[1, 0]} />
+    <meshBasicMaterial wireframe color={icosahedronColor} />
+  </mesh>
+);
+
+const Star = ({ p }) => {
+  const ref = useRef(null);
+
+  useLayoutEffect(() => {
+    const distance = mix(2, 3.5, Math.random());
+    const yAngle = mix(degreesToRadians(80), degreesToRadians(100), Math.random());
+    const xAngle = degreesToRadians(360) * p;
+    ref.current?.position.setFromSphericalCoords(distance, yAngle, xAngle);
+  }, [p]);
+
+  return (
+    <mesh ref={ref}>
+      <boxGeometry args={[0.05, 0.05, 0.05]} />
+      <meshBasicMaterial wireframe color={starColor} />
+    </mesh>
+  );
+};
+
+function Scene({ numStars = 100 }) {
+  const { scrollYProgress } = useScroll();
+  const yAngle = useTransform(scrollYProgress, [0, 1], [0.001, degreesToRadians(180)]);
+  const distance = useTransform(scrollYProgress, [0, 1], [10, 3]);
+  const time = useTime();
+  const gl = useThree((state) => state.gl);
+
+  useFrame(({ camera }) => {
+    camera.position.setFromSphericalCoords(
+      distance.get(),
+      yAngle.get(),
+      time.get() * 0.0005
+    );
+    camera.updateProjectionMatrix();
+    camera.lookAt(0, 0, 0);
+  });
+
+  const stars = [];
+  for (let i = 0; i < numStars; i++) {
+    stars.push(<Star key={i} p={progress(0, numStars, i)} />);
+  }
+
+  return (
+    <>
+      <Icosahedron />
+      {stars}
+    </>
+  );
+}
+
+const Intro3D = () => (
+  <div className="relative h-screen bg-black text-white overflow-hidden">
+    <Canvas className="absolute inset-0 z-0" gl={{ antialias: false }}>
+      <Scene />
+    </Canvas>
+    <div className="absolute inset-0 flex items-center justify-center z-10">
+      <motion.h1
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        className="text-4xl md:text-6xl font-bold text-white"
+      >
+        Welcome to DroneHub
+      </motion.h1>
+    </div>
+  </div>
+);
+
+// defaultCode
 
 const Home = () => {
   const stabilizedRef = useRef(null);
@@ -36,7 +118,7 @@ const Home = () => {
   }, []);
 
   const HeroSection = () => (
-    <div className="h-screen bg-black flex flex-col justify-center items-center text-center text-white px-6">
+    <div className="relative h-screen bg-black flex flex-col justify-center items-center text-center text-white px-6">
       <motion.h1
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -59,22 +141,18 @@ const Home = () => {
         transition={{ delay: 0.8 }}
         className="mt-10 flex gap-6"
       >
-
         <button
           onClick={() => stabilizedRef.current.scrollIntoView({ behavior: "smooth" })}
           className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
         >
           Stabilized
         </button>
-
         <button
           onClick={() => fpvRef.current.scrollIntoView({ behavior: "smooth" })}
           className="min-w-[200px] text-center px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
         >
           FPV
         </button>
-
-
       </motion.div>
     </div>
   );
@@ -132,6 +210,7 @@ const Home = () => {
 
   return (
     <section className="bg-black text-white overflow-hidden">
+      <Intro3D />
       <HeroSection />
 
       <VideoSection
