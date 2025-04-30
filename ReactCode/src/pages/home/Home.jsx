@@ -28,7 +28,7 @@ const DroneModel = () => {
       const liftY = scroll < 0.1 ? 0 : (scroll - 0.1) * 2.5;
 
       // ⬅️ Sposta a destra (asse X), solleva su Y
-      ref.current.position.set(0.5, 1 + trembleY + liftY, 0);
+      ref.current.position.set(0.5, 3 + trembleY + liftY, 0);
       ref.current.rotation.x = tiltX;
       ref.current.rotation.z = tiltZ;
     }
@@ -41,7 +41,7 @@ function Scene() {
   const gl = useThree((state) => state.gl);
 
   useFrame(({ camera }) => {
-    camera.position.set(0, 2, 5); // Fissa la camera
+    camera.position.set(0, 5, 6); // Fissa la camera
     camera.lookAt(0, 0, 0);
   });
 
@@ -66,7 +66,7 @@ const Intro3D = ({ onScrollTo }) => (
         transition={{ duration: 1 }}
         className="text-4xl md:text-6xl font-bold text-white mb-4"
       >
-        Welcome to DroneHub
+        DroneHub
       </motion.h1>
 
       <motion.p
