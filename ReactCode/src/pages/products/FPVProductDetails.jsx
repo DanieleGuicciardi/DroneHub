@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCartStore } from "../../store/useCartStore";
 import { client } from "../../lib/sanityClient";
 import QuickLinks from "../../components/products/QuickLinks";
+import PriceBar from "../../components/products/PriceBar";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
@@ -165,35 +166,12 @@ const FpvProductDetail = () => {
       <QuickLinks/>
 
       {/* price navbar */}
-      <AnimatePresence>
-        {selectedConfig && !hideNavbar && (
-          <motion.div
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            exit={{ y: 100 }}
-            transition={{ type: "tween", duration: 0.65 }}
-            className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-center backdrop-blur-sm shadow-lg border-t border-gray-800 z-50"
-          >
-            <span className="text-white text-lg font-semibold">
-              Eur{" "}
-              <span className="font-light text-xl">
-                {selectedConfig.price.toFixed(2)} €
-              </span>
-            </span>
-            <button
-              onClick={handleAddToCart}
-              className={`px-6 py-2 rounded-full font-semibold transition shadow-lg ${
-                added
-                  ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
-              }`}
-            >
-              {added ? "Added to Cart!" : "Add to Cart"}
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      <PriceBar
+        visible={!hideNavbar}
+        price={selectedConfig ? selectedConfig.price : drone.price}
+        added={added}
+        onAddToCart={handleAddToCart}
+      />
 
     </section>
   );
