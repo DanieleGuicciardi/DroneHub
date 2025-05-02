@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 
-import { useCartStore } from "../store/useCartStore";
-import { useAuthStore } from "../store/useAuthStore";
+import { useCartStore } from "../../store/useCartStore";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);

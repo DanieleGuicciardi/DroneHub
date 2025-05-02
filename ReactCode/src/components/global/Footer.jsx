@@ -41,9 +41,9 @@ const Footer = () => {
         </div>
 
         <div className="flex justify-center gap-4 text-xl w-full md:w-1/3">
-          <a href="https://www.facebook.com/" className="hover:text-blue-500 transition"><FaFacebook /></a>
-          <a href="https://www.instagram.com/daniele.guicciardi" className="hover:text-pink-500 transition"><FaInstagram /></a>
-          <a href="https://www.youtube.com/@danieleguicciardiF" className="hover:text-red-500 transition"><FaYoutube /></a>
+          <a href="https://www.facebook.com/" target="_blank" className="hover:text-blue-500 transition"><FaFacebook /></a>
+          <a href="https://www.instagram.com/daniele.guicciardi" target="_blank" className="hover:text-pink-500 transition"><FaInstagram /></a>
+          <a href="https://www.youtube.com/@danieleguicciardiF" target="_blank" className="hover:text-red-500 transition"><FaYoutube /></a>
         </div>
 
         <div className="w-full md:w-1/3 text-center md:text-right">

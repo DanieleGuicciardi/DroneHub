@@ -83,7 +83,7 @@ const Products = () => {
             whileHover={{ scale: 1.05 }}
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <h2 className="text-2xl font-bold group-hover:text-yellow-400 transition">
+            <h2 className="text-2xl font-bold group-hover:text-blue-400 transition">
               Accessories
             </h2>
           </div>

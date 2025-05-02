@@ -115,13 +115,25 @@ const Intro3D = ({ onScrollTo }) => {
         >
           <button
             onClick={() => onScrollTo("stabilized")}
-            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
+            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 
+              hover:from-blue-600 hover:to-blue-500 
+              text-white font-semibold rounded-3xl shadow-md hover:shadow-lg 
+              transform hover:scale-105 
+              transition-all duration-500 
+              border border-black text-lg tracking-wide hover:tracking-wider
+              "
           >
             Stabilized
           </button>
           <button
             onClick={() => onScrollTo("fpv")}
-            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 hover:from-blue-600 hover:to-blue-500 text-white font-semibold rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 border border-black text-lg tracking-wide hover:tracking-wider"
+            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 
+              hover:from-blue-600 hover:to-blue-500 
+              text-white font-semibold rounded-3xl shadow-md hover:shadow-lg 
+              transform hover:scale-105 
+              transition-all duration-500 
+              border border-black text-lg tracking-wide hover:tracking-wider
+              "
           >
             FPV
           </button>

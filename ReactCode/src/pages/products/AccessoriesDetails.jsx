@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { client } from "../../lib/sanityClient";
 import imageUrlBuilder from "@sanity/image-url";
-import { useCartStore } from "../../store/useCartStore";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { useCartStore } from "../../store/useCartStore";
+import { client } from "../../lib/sanityClient";
+import QuickLinks from "../../components/products/QuickLinks";
+
+
 const builder = imageUrlBuilder(client);
-const urlFor = (source) => builder.image(source);
+const urlFor = (source) => builder.image(source); 
 
 const AccessoryDetail = () => {
   const { slug } = useParams();
@@ -138,52 +141,7 @@ const AccessoryDetail = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Link
-          to="/products"
-          className="relative h-64 bg-gray-800 rounded-xl overflow-hidden group"
-        >
-          <img
-            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745180398/CineDownImg_d0baxp.jpg"
-            alt="Accessories"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
-          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
-            Drones
-          </span>
-        </Link>
-
-        <Link
-          to="/help&support"
-          className="relative h-64 bg-gray-800 rounded-xl overflow-hidden group"
-        >
-          <img
-            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745180409/CineDownImg2_uooaub.jpg"
-            alt="Support"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
-          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
-            Support
-          </span>
-        </Link>
-
-        <Link
-          to="/contacts"
-          className="relative col-span-1 md:col-span-2 h-64 bg-gray-800 rounded-xl overflow-hidden group"
-        >
-          <img
-            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745181022/CineDownImg3_s59rp9.jpg"
-            alt="Contact"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
-          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
-            Contact
-          </span>
-        </Link>
-      </div>
+      <QuickLinks/>
 
       {/* price navbar */}
       <AnimatePresence>
