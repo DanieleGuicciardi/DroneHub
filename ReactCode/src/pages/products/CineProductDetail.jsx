@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import imageUrlBuilder from "@sanity/image-url";
-import { motion, AnimatePresence } from "framer-motion";
 
 import { client } from "../../lib/sanityClient";
 import { useCartStore } from "../../store/useCartStore";
-import QuickLinks  from "../../components/products/QuickLinks.jsx"
+import QuickLinks from "../../components/products/QuickLinks.jsx";
 import PriceBar from "../../components/products/PriceBar.jsx";
 
 const builder = imageUrlBuilder(client);
@@ -18,6 +17,7 @@ const CineProductDetail = () => {
   const [added, setAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showBar, setShowBar] = useState(true);
+  const [showAllSpecs, setShowAllSpecs] = useState(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -35,23 +35,22 @@ const CineProductDetail = () => {
       }`;
       const data = await client.fetch(query, { slug });
       setDrone(data);
-  
+
       setTimeout(() => {
         const scrollPosition = window.scrollY + window.innerHeight;
         const docHeight = document.documentElement.scrollHeight;
         setShowBar(scrollPosition < docHeight - 100);
       }, 100);
     };
-  
+
     fetchDrone();
-    
-    //scroll animation on priceNavbar 
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
       setShowBar(scrollPosition < docHeight - 100);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [slug]);
@@ -144,10 +143,21 @@ const CineProductDetail = () => {
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">Specifications</h3>
               <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                {drone.specifications.split("\n").map((line, i) => (
-                  <li key={i}>{line}</li>
-                ))}
+                {drone.specifications
+                  .split("\n")
+                  .slice(0, showAllSpecs ? undefined : 10)
+                  .map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
               </ul>
+              {drone.specifications.split("\n").length > 10 && (
+                <button
+                  onClick={() => setShowAllSpecs((prev) => !prev)}
+                  className="mt-2 text-blue-400 hover:underline text-sm"
+                >
+                  {showAllSpecs ? "Show less" : "Show more"}
+                </button>
+              )}
             </div>
           )}
 
@@ -184,16 +194,14 @@ const CineProductDetail = () => {
         </div>
       </div>
 
-      <QuickLinks/>
+      <QuickLinks />
 
       <PriceBar
         visible={showBar}
-        price={ drone.price }
+        price={drone.price}
         added={added}
         onAddToCart={handleAddToCart}
       />
-
-
     </section>
   );
 };

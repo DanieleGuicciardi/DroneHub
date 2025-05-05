@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import imageUrlBuilder from "@sanity/image-url";
-import { motion, AnimatePresence } from "framer-motion";
 
-import { useCartStore } from "../../store/useCartStore";
 import { client } from "../../lib/sanityClient";
+import { useCartStore } from "../../store/useCartStore";
 import QuickLinks from "../../components/products/QuickLinks";
 import PriceBar from "../../components/products/PriceBar";
 
@@ -17,9 +16,10 @@ const FpvProductDetail = () => {
   const [selectedConfig, setSelectedConfig] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [added, setAdded] = useState(false);
-  const addToCart = useCartStore((state) => state.addToCart);
   const [hideNavbar, setHideNavbar] = useState(false);
-  
+  const [showAllSpecs, setShowAllSpecs] = useState(false);
+
+  const addToCart = useCartStore((state) => state.addToCart);
 
   useEffect(() => {
     const fetchDrone = async () => {
@@ -35,25 +35,22 @@ const FpvProductDetail = () => {
       const data = await client.fetch(query, { slug });
       setDrone(data);
       setSelectedConfig(data?.configurations?.[0] || null);
-  
+
       setTimeout(() => {
         const scrollPosition = window.scrollY + window.innerHeight;
         const pageHeight = document.body.offsetHeight;
-  
         setHideNavbar(scrollPosition >= pageHeight - 100);
       }, 100);
     };
-  
+
     fetchDrone();
-    
-    //scroll animation on priceNavbar
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight;
       const pageHeight = document.body.offsetHeight;
-  
       setHideNavbar(scrollPosition >= pageHeight - 100);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [slug]);
@@ -80,6 +77,7 @@ const FpvProductDetail = () => {
   return (
     <section className="min-h-screen bg-black text-white px-6 pt-16 pb-32">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+
         <div className="relative w-full h-150 rounded-xl overflow-hidden">
           {drone.images?.length > 0 && (
             <>
@@ -127,6 +125,7 @@ const FpvProductDetail = () => {
         <div>
           <h1 className="text-4xl font-bold mb-4">{drone.title}</h1>
           <p className="text-gray-400 mb-2 text-lg capitalize">Category: {drone.category}</p>
+
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Choose Configuration</h3>
             <ul className="grid gap-3">
@@ -150,29 +149,44 @@ const FpvProductDetail = () => {
             </ul>
           </div>
 
+          {drone.description && (
+            <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+              {drone.description}
+            </p>
+          )}
+
           {drone.specifications && (
             <div className="mt-6">
               <h3 className="text-lg font-semibold mb-2">Specifications</h3>
               <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                {drone.specifications.split("\n").map((line, i) => (
-                  <li key={i}>{line}</li>
-                ))}
+                {drone.specifications
+                  .split("\n")
+                  .slice(0, showAllSpecs ? undefined : 10)
+                  .map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
               </ul>
+              {drone.specifications.split("\n").length > 10 && (
+                <button
+                  onClick={() => setShowAllSpecs((prev) => !prev)}
+                  className="mt-2 text-blue-400 hover:underline text-sm"
+                >
+                  {showAllSpecs ? "Show less" : "Show more"}
+                </button>
+              )}
             </div>
           )}
         </div>
       </div>
 
-      <QuickLinks/>
+      <QuickLinks />
 
-      {/* price navbar */}
       <PriceBar
         visible={!hideNavbar}
         price={selectedConfig ? selectedConfig.price : drone.price}
         added={added}
         onAddToCart={handleAddToCart}
       />
-
     </section>
   );
 };
