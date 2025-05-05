@@ -50,11 +50,11 @@ const Navbar = () => {
           className="w-full bg-black/80 backdrop-blur text-white px-4 py-4 fixed top-0 z-50 shadow-md"
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between relative">
-            <button onClick={handleHomeClick} className="flex items-center gap-2 z-10">
+            <button onClick={handleHomeClick} className="flex items-center gap-2 z-10 hover:scale-110">
               <img
                 src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745839326/ChatGPT_Image_28_apr_2025_13_22_00_qpvete.png"
                 alt="Logo"
-                className="h-15"
+                className="h-15 drop-shadow-md hover:drop-shadow-xl transition duration-300"
               />
             </button>
 

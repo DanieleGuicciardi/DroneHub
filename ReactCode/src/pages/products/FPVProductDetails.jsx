@@ -92,7 +92,7 @@ const FpvProductDetail = () => {
                     prev === 0 ? drone.images.length - 1 : prev - 1
                   )
                 }
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full transition z-10"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white px-3 py-4 rounded-full transition z-10"
               >
                 ‹
               </button>
@@ -102,7 +102,7 @@ const FpvProductDetail = () => {
                     prev === drone.images.length - 1 ? 0 : prev + 1
                   )
                 }
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full transition z-10"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white px-3 py-4 rounded-full transition z-10"
               >
                 ›
               </button>
