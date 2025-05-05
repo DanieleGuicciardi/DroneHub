@@ -6,6 +6,7 @@ const VideoSection = ({
   videoRef,
   src,
   ctaColor,
+  reverse = false,
   ctaLink = "/products",
   sectionRef,
 }) => (
