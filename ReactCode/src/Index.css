@@ -1,1 +1,11 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  button:hover {
+    cursor: pointer; /* oppure pointer, grab, wait, etc. */
+  }
+}
+

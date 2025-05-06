@@ -1,6 +1,15 @@
+import { useState } from "react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Contacts = () => {
+  const [messageSent, setMessageSent] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMessageSent(true);
+    setTimeout(() => setMessageSent(false), 4000); // Nasconde dopo 4 sec
+  };
+
   return (
     <section className="min-h-screen bg-black text-white px-6 py-16">
       <div className="text-center mb-12">
@@ -10,6 +19,7 @@ const Contacts = () => {
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="space-y-6">
+          {/* Info contatti */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Email</h2>
             <p className="text-gray-300">support@dronehub.com</p>
@@ -28,21 +38,25 @@ const Contacts = () => {
           </div>
         </div>
 
-        <form className="space-y-4">
-        <h2 className="text-2xl font-semibold mb-4">Contact Support</h2>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <h2 className="text-2xl font-semibold mb-4">Contact Support</h2>
           <input
             type="text"
             placeholder="Your name"
+            required
             className="w-full bg-gray-800 px-4 py-2 rounded-md text-white placeholder-gray-400"
           />
           <input
             type="email"
             placeholder="Your email"
+            required
             className="w-full bg-gray-800 px-4 py-2 rounded-md text-white placeholder-gray-400"
           />
           <textarea
             rows="5"
             placeholder="Your message"
+            required
             className="w-full bg-gray-800 px-4 py-2 rounded-md text-white placeholder-gray-400"
           ></textarea>
           <button
@@ -51,6 +65,12 @@ const Contacts = () => {
           >
             Send Message
           </button>
+
+          {messageSent && (
+            <p className="text-green-400 font-medium mt-4 animate-pulse">
+              Message sent! We'll get back to you soon.
+            </p>
+          )}
         </form>
       </div>
 

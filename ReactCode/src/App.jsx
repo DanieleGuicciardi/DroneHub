@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './Index.css'
 
 //components
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+import Navbar from "./components/global/Navbar";
+import Footer from "./components/global/Footer";
+import ScrollToTop from "./components/global/ScrollToTop";
 
 //pages
 import Homepage from "./pages/home/Home"
