@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { client } from "../../lib/sanityClient";
-import imageUrlBuilder from "@sanity/image-url";
-import { Link } from "react-router-dom";
-
-const builder = imageUrlBuilder(client);
-const urlFor = (source) => builder.image(source);
+import ProductCard from "../../components/products/ProductCard";
 
 const categorySections = [
   {
@@ -77,29 +73,16 @@ const Accessories = () => {
               />
             </div>
 
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
               {items.map((item) => (
-                <div
+                <ProductCard
                   key={item._id}
-                  className="flex flex-col items-center group hover:-translate-y-2 transition-transform duration-300"
-                >
-                  <img
-                    src={urlFor(item.images?.[0]).width(800).url()}
-                    alt={item.title}
-                    className="w-48 h-48 object-contain mb-4 drop-shadow-xl transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <h3 className="text-xl font-semibold group-hover:text-blue-400 transition">
-                    {item.title}
-                  </h3>
-                  <p className="text-green-400 font-bold mt-1">{item.price} €</p>
-                  <Link
-                    to={`/products/accessories/${item.slug.current}`}
-                    className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold shadow-md transition"
-                  >
-                    Buy Now
-                  </Link>
-                </div>
+                  title={item.title}
+                  price={item.price}
+                  image={item.images?.[0]}
+                  slug={item.slug}
+                  linkTo={`/products/accessories/${item.slug.current}`}
+                />
               ))}
             </div>
           </div>
