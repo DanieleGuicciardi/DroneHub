@@ -1,6 +1,6 @@
 <h1 align="center">
   DroneHub
-  <img src="https://github.com/user-attachments/assets/0db4952b-5daa-4b08-ac35-9fcac6fd4c04" alt="DroneHub Logo" height="40" style="vertical-align: middle; margin-left: 15px;" />
+  <img src="https://github.com/user-attachments/assets/0db4952b-5daa-4b08-ac35-9fcac6fd4c04" alt="DroneHub Logo" height="60" style="vertical-align: middle; margin-left: 15px;" />
 </h1>
 
 
