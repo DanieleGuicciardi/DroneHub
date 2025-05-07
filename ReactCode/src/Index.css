@@ -5,7 +5,6 @@
 
 @layer components {
   button:hover {
-    cursor: pointer; /* oppure pointer, grab, wait, etc. */
+    cursor: pointer;
   }
 }
-

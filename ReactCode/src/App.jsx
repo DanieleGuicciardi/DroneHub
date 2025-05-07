@@ -10,6 +10,8 @@ import ScrollToTop from "./components/global/ScrollToTop";
 import Homepage from "./pages/home/Home"
 
 import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import VerifyEmail from "./pages/auth/VerifyEmail";
 
 import Cart from "./pages/cart/Cart"
 import Checkout from "./pages/cart/Checkout";
@@ -42,6 +44,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         
         <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/verifyemail" element={<VerifyEmail/>} />
 
         <Route path="/cart" element={<Cart/>} />
         <Route path="/checkout" element={<Checkout/>} />
