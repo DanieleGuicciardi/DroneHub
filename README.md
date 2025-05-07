@@ -97,13 +97,17 @@ DroneHub/
 
 For inquiries or collaborations:  
 **dany.guicciardi@outlook.com**  
+
 [Linkedin](https://www.linkedin.com/in/daniele-guicciardi-ferrusi-b29432331/)
 
 ---
 
-## 📜 License
+## 📄 License
 
-Licensed under the [MIT License](LICENSE).
+This project is released with **all rights reserved**.  
+It is intended for **personal or portfolio purposes only** and may **not be copied, reused, or redistributed** without prior written permission from the author.
+
+© 2025 Daniele Guicciardi
 
 ---
 
