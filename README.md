@@ -71,12 +71,20 @@ DroneHub/
 
 ---
 
-## 📷 Screenshots
+<details>
+  <summary><strong>📷 Screenshots (click to expand)</strong></summary>
 
-![Screenshot 2025-05-07 at 17-19-18 DroneHub](https://github.com/user-attachments/assets/535cc734-bc86-4551-8a7d-1ebd32bde449)
-![screnn2](https://github.com/user-attachments/assets/ed093bca-1f5e-49f3-9ff0-2d40f2154d3d)
-![screen3](https://github.com/user-attachments/assets/bf34ea9e-523f-452d-9055-2c44c10629e7)
-![screen4](https://github.com/user-attachments/assets/95b7b408-6aff-45d1-afda-c83e0638218d)
+  <br>
+
+  ![Screenshot 2025-05-07 at 17-19-18 DroneHub](https://github.com/user-attachments/assets/535cc734-bc86-4551-8a7d-1ebd32bde449)
+  
+  ![screnn2](https://github.com/user-attachments/assets/ed093bca-1f5e-49f3-9ff0-2d40f2154d3d)
+  
+  ![screen3](https://github.com/user-attachments/assets/bf34ea9e-523f-452d-9055-2c44c10629e7)
+  
+  ![screen4](https://github.com/user-attachments/assets/95b7b408-6aff-45d1-afda-c83e0638218d)
+
+</details>
 
 ---
 
