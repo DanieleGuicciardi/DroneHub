@@ -2,14 +2,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './Index.css'
 
 //components
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+import Navbar from "./components/global/Navbar";
+import Footer from "./components/global/Footer";
+import ScrollToTop from "./components/global/ScrollToTop";
 
 //pages
 import Homepage from "./pages/home/Home"
 
 import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import VerifyEmail from "./pages/auth/VerifyEmail";
 
 import Cart from "./pages/cart/Cart"
 import Checkout from "./pages/cart/Checkout";
@@ -42,6 +44,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         
         <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/verifyemail" element={<VerifyEmail/>} />
 
         <Route path="/cart" element={<Cart/>} />
         <Route path="/checkout" element={<Checkout/>} />

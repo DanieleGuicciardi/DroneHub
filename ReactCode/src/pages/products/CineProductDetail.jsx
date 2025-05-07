@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { client } from "../../lib/sanityClient";
+import { useParams} from "react-router-dom";
 import imageUrlBuilder from "@sanity/image-url";
+
+import { client } from "../../lib/sanityClient";
 import { useCartStore } from "../../store/useCartStore";
-import { motion, AnimatePresence } from "framer-motion";
+import QuickLinks from "../../components/products/QuickLinks.jsx";
+import PriceBar from "../../components/products/PriceBar.jsx";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
@@ -15,6 +17,7 @@ const CineProductDetail = () => {
   const [added, setAdded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showBar, setShowBar] = useState(true);
+  const [showAllSpecs, setShowAllSpecs] = useState(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -32,20 +35,24 @@ const CineProductDetail = () => {
       }`;
       const data = await client.fetch(query, { slug });
       setDrone(data);
-      
-      //scroll animation on priceNavbar
-      const handleScroll = () => {
+
+      setTimeout(() => {
         const scrollPosition = window.scrollY + window.innerHeight;
         const docHeight = document.documentElement.scrollHeight;
-        
         setShowBar(scrollPosition < docHeight - 100);
-      };
-      
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
+      }, 100);
     };
-    
+
     fetchDrone();
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      setShowBar(scrollPosition < docHeight - 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [slug]);
 
   const handleNext = () => {
@@ -96,13 +103,13 @@ const CineProductDetail = () => {
 
               <button
                 onClick={handlePrev}
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full transition z-10"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white px-3 py-4 rounded-full transition z-10"
               >
                 ‹
               </button>
               <button
                 onClick={handleNext}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white px-3 py-2 rounded-full transition z-10"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-800 text-white px-3 py-4 rounded-full transition z-10"
               >
                 ›
               </button>
@@ -136,10 +143,21 @@ const CineProductDetail = () => {
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">Specifications</h3>
               <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                {drone.specifications.split("\n").map((line, i) => (
-                  <li key={i}>{line}</li>
-                ))}
+                {drone.specifications
+                  .split("\n")
+                  .slice(0, showAllSpecs ? undefined : 10)
+                  .map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
               </ul>
+              {drone.specifications.split("\n").length > 10 && (
+                <button
+                  onClick={() => setShowAllSpecs((prev) => !prev)}
+                  className="mt-2 text-blue-400 hover:underline text-sm"
+                >
+                  {showAllSpecs ? "Show less" : "Show more"}
+                </button>
+              )}
             </div>
           )}
 
@@ -176,80 +194,14 @@ const CineProductDetail = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Link
-          to="/products/accessories"
-          className="relative h-64 bg-gray-800 rounded-xl overflow-hidden group"
-        >
-          <img
-            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745180398/CineDownImg_d0baxp.jpg"
-            alt="Accessories"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
-          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
-            Accessories
-          </span>
-        </Link>
+      <QuickLinks />
 
-        <Link
-          to="/help&support"
-          className="relative h-64 bg-gray-800 rounded-xl overflow-hidden group"
-        >
-          <img
-            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745180409/CineDownImg2_uooaub.jpg"
-            alt="Assurance"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
-          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
-            Assurance
-          </span>
-        </Link>
-
-        <Link
-          to="/contacts"
-          className="relative col-span-1 md:col-span-2 h-64 bg-gray-800 rounded-xl overflow-hidden group"
-        >
-          <img
-            src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745181022/CineDownImg3_s59rp9.jpg"
-            alt="Support"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition"></div>
-          <span className="absolute bottom-4 left-4 text-white text-xl font-semibold drop-shadow">
-            Support
-          </span>
-        </Link>
-      </div>
-
-      {/* price navbar */}
-      <AnimatePresence>
-        {showBar && (
-          <motion.div
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            exit={{ y: 100 }}
-            transition={{ type: "tween", duration: 0.65 }}
-            className="fixed bottom-0 left-0 right-0 bg-black px-10 py-6 flex justify-between items-center backdrop-blur-sm border-t border-gray-800 z-50 shadow-inner"
-          >
-            <span className="text-white text-lg font-semibold">
-              Eur <span className="font-light text-xl">{totalPrice.toFixed(2)} €</span>
-            </span>
-            <button
-              onClick={handleAddToCart}
-              className={`px-6 py-2 rounded-full font-semibold transition shadow-lg ${
-                added
-                  ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
-              }`}
-            >
-              {added ? "Added to Cart!" : "Add to Cart"}
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      <PriceBar
+        visible={showBar}
+        price={drone.price}
+        added={added}
+        onAddToCart={handleAddToCart}
+      />
     </section>
   );
 };

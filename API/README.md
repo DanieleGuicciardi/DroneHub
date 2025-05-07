@@ -1,9 +1,15 @@
-# Sanity Clean Content Studio
+# DroneHub – API (Sanity CMS)
 
-Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
+This folder contains the [Sanity.io](https://www.sanity.io/) backend for managing content in the DroneHub application.
 
-Now you can do the following things:
+## Structure
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+- `sanity.config.ts` – Sanity config entry point
+- `schemaTypes/` – Product and category schemas
+
+## How to run locally
+
+```bash
+cd API
+sanity dev
+

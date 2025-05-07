@@ -21,22 +21,17 @@ const Cart = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [careRefresh, setCareRefresh] = useState(false);
 
-  //price careRefresh
   const careRefreshUnitPrice = 38;
-
-  //total
   const cartTotal = cart.reduce(
     (acc, item) => acc + (item.price || 0) * item.quantity,
     0
   );
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  // careRefresh add + discount
   let careRefreshTotal = careRefreshUnitPrice * totalItems;
   const discountUnlocked = totalItems > 3 || cartTotal > 2000;
 
   if (discountUnlocked) {
-    careRefreshTotal *= 0.8; 
+    careRefreshTotal *= 0.8;
   }
 
   const finalTotal = careRefresh ? cartTotal + careRefreshTotal : cartTotal;
@@ -52,8 +47,7 @@ const Cart = () => {
   return (
     <section className="min-h-screen bg-black text-white px-4 md:px-10 py-16">
       <div className="max-w-7xl mx-auto space-y-12">
-
-        <h1 className="text-5xl font-extrabold text-center ">Your Cart</h1>
+        <h1 className="text-5xl font-extrabold text-center">Your Cart</h1>
 
         {cart.length === 0 ? (
           <div className="text-center mt-10 space-y-6">
@@ -76,14 +70,63 @@ const Cart = () => {
               <div className="col-span-1 text-center">Total</div>
             </div>
 
-            {/* prod */}
             <div className="space-y-8">
               {cart.map((item) => (
                 <div
                   key={item._id}
-                  className="grid grid-cols-12 items-center py-8 border-b border-gray-800 gap-6"
+                  className="flex flex-col md:grid md:grid-cols-12 items-center py-8 border-b border-gray-800 gap-4"
                 >
-                  <div className="col-span-7 flex items-center gap-4">
+                  {/* mobile */}
+                  <div className="flex md:hidden flex-col gap-4 w-full">
+                    <div className="flex items-start gap-4">
+                      <img
+                        src={item.image?.asset ? urlFor(item.image).width(100).url() : ""}
+                        alt={item.title}
+                        className="w-24 h-24 object-contain rounded-lg shadow-md"
+                      />
+                      <div className="flex-1 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <Link
+                            to={`/products/cine/${item.slug?.current}`}
+                            className="text-lg font-bold text-white hover:text-blue-400 transition"
+                          >
+                            {item.title}
+                          </Link>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => decreaseQuantity(item._id)}
+                              className="w-7 h-7 bg-gray-800 hover:bg-gray-700 text-white rounded-full text-base"
+                            >
+                              −
+                            </button>
+                            <span className="w-8 text-center text-base font-semibold">{item.quantity}</span>
+                            <button
+                              onClick={() => increaseQuantity(item._id)}
+                              className="w-7 h-7 bg-gray-800 hover:bg-gray-700 text-white rounded-full text-base"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center text-sm text-gray-400">
+                          <p>{item.price.toFixed(2)} € each</p>
+                          <p className="text-white text-xl mt-3 mr-6 font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex justify-end">
+                      <button
+                        onClick={() => removeFromCart(item._id)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <FaTrash size={18} />
+                      </button>
+                    </div>
+                  </div>
+
+
+                  {/* dekstop */}
+                  <div className="hidden md:flex md:col-span-7 items-center gap-4">
                     <img
                       src={item.image?.asset ? urlFor(item.image).width(120).url() : ""}
                       alt={item.title}
@@ -91,44 +134,38 @@ const Cart = () => {
                     />
                     <Link
                       to={`/products/cine/${item.slug?.current}`}
-                      className="text-2xl md:text-l ml-10 font-extrabold text-white hover:text-blue-400 transition-all"
+                      className="text-xl font-extrabold text-white hover:text-blue-400 transition-all"
                     >
                       {item.title}
                     </Link>
                   </div>
-
-                  <div className="col-span-1 text-sm text-gray-300 text-center">
+                  <div className="hidden md:block md:col-span-1 text-sm text-gray-300 text-center">
                     {item.price.toFixed(2)} €
                   </div>
-
-                  <div className="col-span-2 flex justify-center">
-                    <div className="flex items-center border border-gray-700 rounded-lg overflow-hidden">
+                  <div className="hidden md:flex md:col-span-2 justify-center">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => decreaseQuantity(item._id)}
-                        className="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-bold transition"
+                        className="w-9 h-9 bg-gray-800 hover:bg-gray-700 text-white rounded-full text-lg"
                       >
                         −
                       </button>
-                      <span className="px-6 py-2 text-lg font-semibold text-white bg-black">
-                        {item.quantity}
-                      </span>
+                      <span className="w-10 text-center text-lg font-semibold">{item.quantity}</span>
                       <button
                         onClick={() => increaseQuantity(item._id)}
-                        className="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm font-bold transition"
+                        className="w-9 h-9 bg-gray-800 hover:bg-gray-700 text-white rounded-full text-lg"
                       >
                         +
                       </button>
                     </div>
                   </div>
-
-                  <div className="col-span-1 text-sm font-semibold text-center">
+                  <div className="hidden md:block md:col-span-1 text-sm font-semibold text-center">
                     {(item.price * item.quantity).toFixed(2)} €
                   </div>
-
-                  <div className="col-span-1 flex justify-center">
+                  <div className="hidden md:flex md:col-span-1 justify-center">
                     <button
                       onClick={() => removeFromCart(item._id)}
-                      className="text-red-500 hover:text-red-700 transition"
+                      className="text-red-500 hover:text-red-700"
                     >
                       <FaTrash size={18} />
                     </button>
@@ -137,8 +174,8 @@ const Cart = () => {
               ))}
             </div>
 
-            {/* price sect */}
-            <div className="flex flex-col md:flex-row justify-between gap-10">
+
+            <div className="flex flex-col md:flex-row justify-between gap-10 mt-10">
               <div className="flex flex-col items-start gap-4">
                 <div className="flex items-center gap-3">
                   <input
@@ -148,7 +185,14 @@ const Cart = () => {
                     className="w-5 h-5 accent-blue-600 mt-1"
                   />
                   <label className="text-gray-300 text-base">
-                    Add <Link to="/help&support" className="underline text-blue-500 hover:text-blue-600">Care Refresh</Link> ({careRefreshUnitPrice}€ x item)
+                    Add{" "}
+                    <Link
+                      to="/help&support"
+                      className="underline text-blue-500 hover:text-blue-600"
+                    >
+                      Care Refresh
+                    </Link>{" "}
+                    ({careRefreshUnitPrice}€ x item)
                   </label>
                 </div>
                 {discountUnlocked && careRefresh && (
@@ -158,9 +202,10 @@ const Cart = () => {
                 )}
               </div>
 
-              <div className="text-right space-y-2">
-                <p className="text-2xl font-bold">
-                  Total Amount: <span className="text-green-400">{finalTotal.toFixed(2)} €</span>
+              <div className="text-left md:text-right space-y-2">
+                <p className="text-xl md:text-2xl font-bold">
+                  Total Amount:{" "}
+                  <span className="text-green-400">{finalTotal.toFixed(2)} €</span>
                 </p>
                 {careRefresh && (
                   <p className="text-sm text-gray-400">
@@ -171,10 +216,9 @@ const Cart = () => {
               </div>
             </div>
 
-            {/* br */}
+
             <hr className="border-gray-700 my-10" />
 
-            {/* btns */}
             <div className="flex flex-col md:flex-row justify-between gap-6">
               <Link
                 to="/products"
@@ -194,7 +238,6 @@ const Cart = () => {
         )}
       </div>
 
-      {/* alert login */}
       {showPopup && (
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
