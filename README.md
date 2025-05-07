@@ -1,11 +1,10 @@
 <h1 align="center">
   DroneHub
-  <img src="(https://github.com/user-attachments/assets/31d61efd-7314-4496-a572-995ce5f6d07d" alt="DroneHub Logo" height="50" style="vertical-align: middle; margin-left: 20px;" />
+  <img src="(https://github.com/user-attachments/assets/0184653f-4720-4d46-8eb2-748ff018b75c" alt="DroneHub Logo" height="50" style="vertical-align: middle; margin-left: 20px;" />
 </h1>
 
 
 **Your ultimate drone shopping experience** — Explore, compare, and buy cinematic and FPV drones with style and performance.
-![Cattura](https://github.com/user-attachments/assets/0184653f-4720-4d46-8eb2-748ff018b75c)
 
 [![React](https://img.shields.io/badge/Made%20with-React-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev)
 [![Tailwind](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
