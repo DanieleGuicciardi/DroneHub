@@ -51,23 +51,28 @@ DroneHub/
 
 ---
 
-## 🛠️ Setup & Installation
+<details>
+  <summary><h3>🛠️ Setup & Installation (click to expand)</h3></summary>
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/dronehub.git
-   cd dronehub/reactcode
-   ```
+  <br>
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+  1. Clone the repository:
+     ```bash
+     git clone https://github.com/your-username/dronehub.git
+     cd dronehub/reactcode
+     ```
 
-3. Start development server:
-   ```bash
-   npm run dev
-   ```
+  2. Install dependencies:
+     ```bash
+     npm install
+     ```
+
+  3. Start development server:
+     ```bash
+     npm run dev
+     ```
+
+</details>
 
 ---
 
