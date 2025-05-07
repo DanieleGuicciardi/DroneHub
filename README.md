@@ -13,19 +13,7 @@
 
 **DroneHub** is a responsive full-stack e-commerce app focused on selling and showcasing professional drones and accessories. Built using modern technologies, it provides a smooth user experience through interactive UI, dynamic product pages, and real-time cart updates.
 
-### ✨ Features
-
-- 🔎 Smooth product browsing with **video hero sections**
-- 🎥 Dynamic pages for **Cine** and **FPV drones**
-- 🛒 Sticky & animated **Price Navbar**
-- 📦 Configurable product options and real-time price calculation
-- 🧩 Fully integrated **Sanity CMS** for content management
-- 🎯 Responsive design for all devices
-- 🚀 Animated transitions with **Framer Motion**
-
----
-
-## ⚙️ Tech Stack
+### ⚙️ Tech Stack
 
 | Technology        | Role                           |
 |-------------------|--------------------------------|
