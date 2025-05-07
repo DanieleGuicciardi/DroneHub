@@ -16,7 +16,7 @@
 
 ## 🔍 Overview
 
-**DroneHub** is a responsive full-stack e-commerce app focused on selling and showcasing professional drones and accessories. Built using modern technologies, it provides a smooth user experience through interactive UI, dynamic product pages, and real-time cart updates.
+**DroneHub** is a responsive e-commerce app focused on selling and showcasing professional drones and accessories. Built using modern technologies, it provides a smooth user experience through interactive UI, dynamic product pages, and real-time cart updates.
 
 ### ⚙️ Tech Stack
 
