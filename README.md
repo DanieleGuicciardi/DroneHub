@@ -2,6 +2,7 @@
   DroneHub
   <img src="(https://github.com/user-attachments/assets/31d61efd-7314-4496-a572-995ce5f6d07d" alt="DroneHub Logo" height="50" style="vertical-align: middle; margin-left: 20px;" />
 </h1>
+![Cattura](https://github.com/user-attachments/assets/a94fc2b9-4e48-492d-ae31-b704638dc7d8)
 
 **Your ultimate drone shopping experience** — Explore, compare, and buy cinematic and FPV drones with style and performance.
 
