@@ -72,7 +72,7 @@ DroneHub/
 ---
 
 <details>
-  <summary><strong>📷 Screenshots (click to expand)</strong></summary>
+  <summary><h3>📷 Screenshots (click to expand)</h3></summary>
 
   <br>
 
