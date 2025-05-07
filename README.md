@@ -1,8 +1,7 @@
 <h1 align="center">
   DroneHub
-  <img src="https://github.com/user-attachments/assets/0db4952b-5daa-4b08-ac35-9fcac6fd4c04" alt="DroneHub Logo" height="60" style="vertical-align: middle; margin-left: 30px; margin-bottom: 0" />
+  <img src="https://github.com/user-attachments/assets/0db4952b-5daa-4b08-ac35-9fcac6fd4c04" alt="DroneHub Logo" height="50" style="vertical-align: middle; margin-left: 20px;" />
 </h1>
-
 
 **Your ultimate drone shopping experience** — Explore, compare, and buy cinematic and FPV drones with style and performance.
 
