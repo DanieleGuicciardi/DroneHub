@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const VideoSection = ({
   title,
@@ -32,6 +33,7 @@ const VideoSection = ({
       >
         {title}
       </motion.h2>
+
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -40,14 +42,18 @@ const VideoSection = ({
       >
         {description}
       </motion.p>
-      <motion.a
-        href={ctaLink}
+
+      <motion.div
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
-        className={`px-8 py-3 ${ctaColor} text-white font-semibold rounded-full shadow-md transition`}
       >
-        View Products
-      </motion.a>
+        <Link
+          to={ctaLink}
+          className={`px-8 py-3 ${ctaColor} text-white font-semibold rounded-full shadow-md transition inline-block`}
+        >
+          View Products
+        </Link>
+      </motion.div>
     </div>
   </div>
 );

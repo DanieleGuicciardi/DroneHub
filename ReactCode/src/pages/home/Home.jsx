@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import Intro3D from "../../components/home/Intro3D";
 import VideoSection from "../../components/home/VideoSection";
@@ -80,12 +81,12 @@ const Home = () => {
         <p className="text-gray-400 max-w-2xl mx-auto text-lg mb-8">
           Explore our full catalog and discover your pilot personality. DroneHub is your skyward gateway.
         </p>
-        <a
-          href="/products"
+        <Link
+          to="/products"
           className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-10 py-4 rounded-full font-semibold shadow-lg text-white transition"
         >
           Explore All Drones
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../../store/useAuthStore";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -55,6 +55,13 @@ const Login = () => {
                   placeholder="••••••••"
                 />
               </div>
+
+              <p className="text-center text-sm text-gray-400 mt-4">
+                Don’t have an account?{" "}
+              <Link to="/register" className="underline text-blue-500 hover:text-blue-600">
+                Register here
+              </Link>
+              </p>
 
               <button
                 type="submit"
