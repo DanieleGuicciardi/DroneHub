@@ -100,7 +100,6 @@ DroneHub/
 
 ## 📩 Contact
 
-For inquiries or collaborations:  
 **dany.guicciardi@outlook.com**  
 
 [Linkedin](https://www.linkedin.com/in/daniele-guicciardi-ferrusi-b29432331/)
