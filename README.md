@@ -10,7 +10,7 @@
 [![Tailwind](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Sanity](https://img.shields.io/badge/Powered%20by-Sanity-F03E2F?style=flat-square&logo=sanity&logoColor=white)](https://www.sanity.io/)
 [![Framer Motion](https://img.shields.io/badge/Animations-Framer%20Motion-EF6C99?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?style=flat-square&logo=vercel)](https://vercel.com)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?style=flat-square&logo=vercel)](https://drone-hub.vercel.app/)
 
 ---
 
