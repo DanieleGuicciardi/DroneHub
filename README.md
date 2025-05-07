@@ -2,7 +2,7 @@
 
 **Your ultimate drone shopping experience** — Explore, compare, and buy cinematic and FPV drones with style and performance.
 
-![GitHub Repo Size](https://img.shields.io/github/repo-size/DanieleGuicciardi/dronehub?color=%238a63d2&style=flat-square)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/DanieleGuicciardi/DroneHub?color=%238a63d2&style=flat-square)
 ![Made with React](https://img.shields.io/badge/Made%20with-React-61DAFB?style=flat-square&logo=react&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
 ![Sanity](https://img.shields.io/badge/Powered%20by-Sanity-F03E2F?style=flat-square&logo=sanity&logoColor=white)
