@@ -25,19 +25,28 @@
 | **Sanity.io**     | Headless CMS                   |
 | **Cloudinary**    | Media (video/image) CDN        |
 | **Zustand**       | Global state management        |
+| **Three Lib**     | 3D Model Animation             |
 
 ---
 
 ## 📂 Project Structure
 
 ```
-src/
-├── components/        # Reusable UI components
-├── pages/             # Main route views
-├── store/             # Zustand store for cart
-├── lib/               # Sanity client setup
-├── assets/            # Static images/videos
-└── App.jsx            # Root component
+DroneHub/
+├── API/               # Sanity.io project (backend)
+│   ├── schemaTypes/       # Sanity schemas for products
+│   ├── sanity.config.ts
+│   └── ...
+├── ReactCode/         # Frontend in React
+│   ├── src/
+│   │   ├── components/  # Reusable UI components
+│   │   ├── pages/       # Main route views
+│   │   ├── store/       # Zustand store for cart and login
+│   │   ├── lib/         # Sanity client setup
+│   │   └── App.jsx      # Root component
+│   └── ...
+└── README.md
+
 ```
 
 ---
@@ -47,7 +56,7 @@ src/
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/dronehub.git
-   cd dronehub
+   cd dronehub/reactcode
    ```
 
 2. Install dependencies:
@@ -55,13 +64,7 @@ src/
    npm install
    ```
 
-3. Set up environment variables in `.env`:
-   ```env
-   VITE_SANITY_PROJECT_ID=your_sanity_project_id
-   VITE_SANITY_DATASET=production
-   ```
-
-4. Start development server:
+3. Start development server:
    ```bash
    npm run dev
    ```
@@ -70,15 +73,18 @@ src/
 
 ## 📷 Screenshots
 
-> _Add a few demo screenshots or GIFs here to showcase features visually._
+![Screenshot 2025-05-07 at 17-19-18 DroneHub](https://github.com/user-attachments/assets/535cc734-bc86-4551-8a7d-1ebd32bde449)
+![screnn2](https://github.com/user-attachments/assets/ed093bca-1f5e-49f3-9ff0-2d40f2154d3d)
+![screen3](https://github.com/user-attachments/assets/bf34ea9e-523f-452d-9055-2c44c10629e7)
+![screen4](https://github.com/user-attachments/assets/95b7b408-6aff-45d1-afda-c83e0638218d)
 
 ---
 
 ## 📩 Contact
 
 For inquiries or collaborations:  
-**your.email@example.com**  
-[Portfolio Website](https://yourportfolio.com)
+**dany.guicciardi@outlook.com**  
+[Linkedin](https://www.linkedin.com/in/daniele-guicciardi-ferrusi-b29432331/)
 
 ---
 
@@ -88,4 +94,4 @@ Licensed under the [MIT License](LICENSE).
 
 ---
 
-> **Made with ❤️ by [Your Name](https://github.com/your-username)**
+> **Made with ❤️ by [Daniele Guicciardi](https://github.com/DanieleGuicciardi)**
