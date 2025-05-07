@@ -5,7 +5,8 @@
 [![React](https://img.shields.io/badge/Made%20with-React-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev)
 [![Tailwind](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Sanity](https://img.shields.io/badge/Powered%20by-Sanity-F03E2F?style=flat-square&logo=sanity&logoColor=white)](https://www.sanity.io/)
-[![License](https://img.shields.io/github/license/DanieleGuicciardi/DroneHub?style=flat-square)](https://github.com/DanieleGuicciardi/DroneHub/blob/main/LICENSE)
+[![Framer Motion](https://img.shields.io/badge/Animations-Framer%20Motion-EF6C99?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?style=flat-square&logo=vercel)](https://vercel.com)
 
 ---
 
