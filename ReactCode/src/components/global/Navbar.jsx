@@ -5,6 +5,7 @@ import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 
 import { useCartStore } from "../../store/useCartStore";
 import { useAuthStore } from "../../store/useAuthStore";
+import LiveSearchBar from "./LiveSearch";
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -104,9 +105,12 @@ const Navbar = () => {
                   )}
                 </button>
               </li>
+              <li>
+                <LiveSearchBar />
+              </li>
             </ul>
 
-            {/* mobile*/}
+            {/* mobile */}
             <button
               className="md:hidden z-20"
               onClick={() => setMenuOpen((prev) => !prev)}
@@ -162,6 +166,9 @@ const Navbar = () => {
                         </span>
                       )}
                     </button>
+                  </li>
+                  <li className="w-full">
+                    <LiveSearchBar />
                   </li>
                 </motion.ul>
               )}

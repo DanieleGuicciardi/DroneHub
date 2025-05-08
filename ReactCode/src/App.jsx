@@ -9,6 +9,8 @@ import ScrollToTop from "./components/global/ScrollToTop";
 //pages
 import Homepage from "./pages/home/Home"
 
+import SearchResults from "./pages/search/SearchResults";
+
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import VerifyEmail from "./pages/auth/VerifyEmail";
@@ -42,6 +44,8 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Homepage />} />
+
+        <Route path="/search" element={<SearchResults />} />
         
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
