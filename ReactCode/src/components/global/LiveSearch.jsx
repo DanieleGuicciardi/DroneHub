@@ -10,6 +10,7 @@ const LiveSearchBar = () => {
   const [results, setResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+
   const builder = imageUrlBuilder(client);
   const urlFor = (source) => builder.image(source);
 
@@ -27,12 +28,13 @@ const LiveSearchBar = () => {
           }`,
           { q: `${query}*` }
         );
+
         setResults(data);
         setShowDropdown(true);
       };
 
       fetchResults();
-    }, 300); // debounce 300ms
+    }, 300);
 
     return () => clearTimeout(delayDebounce);
   }, [query]);
@@ -45,8 +47,15 @@ const LiveSearchBar = () => {
     setQuery("");
   };
 
-  const handleResultClick = (slug) => {
-    navigate(`/products/cine/${slug}`);
+  const handleResultClick = (slug, type) => {
+    const path =
+      type === "FPVDrones"
+        ? "fpv"
+        : type === "SecondaryProducts"
+        ? "secondary"
+        : "cine";
+
+    navigate(`/products/${path}/${slug}`);
     setShowDropdown(false);
     setQuery("");
   };
@@ -62,10 +71,10 @@ const LiveSearchBar = () => {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search drones..."
+          placeholder="Search"
           className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none w-full"
           onFocus={() => query.length > 0 && setShowDropdown(true)}
-          onBlur={() => setTimeout(() => setShowDropdown(false), 150)} // chiude dropdown dopo click
+          onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
         />
       </form>
 
@@ -74,15 +83,20 @@ const LiveSearchBar = () => {
           {results.map((item) => (
             <li
               key={item._id}
-              onClick={() => handleResultClick(item.slug.current)}
+              onClick={() => handleResultClick(item.slug.current, item._type)}
               className="px-4 py-2 hover:bg-gray-800 cursor-pointer text-sm text-white flex items-center gap-2"
             >
-            <img
-              src={urlFor(item.images?.[0]).width(100).url()}
-              alt={item.title}
-              className="w-8 h-8 object-cover rounded"
-            />
-              {item.title}
+              <img
+                src={urlFor(item.images?.[0]).width(100).url()}
+                alt={item.title}
+                className="w-8 h-8 object-cover rounded"
+              />
+              <div className="flex flex-col">
+                <span>{item.title}</span>
+                <span className="text-xs text-gray-400 capitalize">
+                  {item._type.replace("Drones", " Drones").replace("SecondaryProducts", "Accessories")}
+                </span>
+              </div>
             </li>
           ))}
         </ul>

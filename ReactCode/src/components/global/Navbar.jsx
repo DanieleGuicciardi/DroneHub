@@ -48,132 +48,131 @@ const Navbar = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -80, opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="w-full bg-black/80 backdrop-blur text-white px-4 py-4 fixed top-0 z-50 shadow-md"
+          className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur shadow-md text-white"
         >
-          <div className="max-w-7xl mx-auto flex items-center justify-between relative">
-            <button onClick={handleHomeClick} className="flex items-center gap-2 z-10 hover:scale-110">
-              <img
-                src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745839326/ChatGPT_Image_28_apr_2025_13_22_00_qpvete.png"
-                alt="Logo"
-                className="h-15 drop-shadow-md hover:drop-shadow-xl transition duration-300"
-              />
-            </button>
+          {/* Top bar - 3 columns */}
+          <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-3 items-center">
+            {/* Logo (left) */}
+            <div className="flex items-center gap-3 justify-start">
+              <button onClick={handleHomeClick} className="hover:scale-105 transition">
+                <img
+                  src="https://res.cloudinary.com/dgtwxbofy/image/upload/v1745839326/ChatGPT_Image_28_apr_2025_13_22_00_qpvete.png"
+                  alt="Logo"
+                  className="h-13 w-auto"
+                />
+              </button>
+            </div>
 
-            <div className="absolute left-1/2 -translate-x-1/2">
+            {/* Title (center) */}
+            <div className="flex justify-center">
               <button
                 onClick={handleHomeClick}
-                className="text-xl sm:text-2xl font-bold tracking-wide hover:text-blue-400 transition-colors"
+                className="text-xl font-bold tracking-wide hover:text-blue-400 transition"
               >
                 DroneHub
               </button>
             </div>
 
-            {/* desktop */}
-            <ul className="hidden md:flex items-center space-x-6 text-lg font-medium z-10">
-              <li>
-                <button onClick={() => navigate("/products")} className="hover:text-blue-400 transition-colors">
-                  Products
-                </button>
-              </li>
-              <li>
-                {!user ? (
-                  <button onClick={() => navigate("/login")} className="hover:text-blue-400 transition-colors">
-                    Login
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      const confirmLogout = window.confirm("Are you sure you want to logout?");
-                      if (confirmLogout) logout();
-                    }}
-                    className="hover:text-red-400 transition-colors"
-                  >
-                    Logout
-                  </button>
-                )}
-              </li>
-              <li className="relative">
-                <button
-                  onClick={() => navigate("/cart")}
-                  className="hover:text-blue-400 transition-colors flex items-center"
-                >
-                  <FaShoppingCart className="text-xl" />
-                  {cartCount > 0 && (
-                    <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
-                      {cartCount}
-                    </span>
-                  )}
-                </button>
-              </li>
-              <li>
+            {/* Right side (desktop): search + nav */}
+            <div className="hidden md:flex items-center gap-6 justify-end">
+              <div className="w-48">
                 <LiveSearchBar />
-              </li>
-            </ul>
+              </div>
 
-            {/* mobile */}
-            <button
-              className="md:hidden z-20"
-              onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label="Toggle Menu"
-            >
-              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
+              <button onClick={() => navigate("/products")} className="hover:text-blue-400 transition">
+                Products
+              </button>
 
-            <AnimatePresence>
-              {menuOpen && (
-                <motion.ul
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute top-full right-4 bg-black/90 backdrop-blur p-6 rounded-md flex flex-col items-end space-y-4 text-lg font-medium md:hidden mt-2"
+              {!user ? (
+                <button onClick={() => navigate("/login")} className="hover:text-blue-400 transition">
+                  Login
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    const confirmLogout = window.confirm("Are you sure you want to logout?");
+                    if (confirmLogout) logout();
+                  }}
+                  className="hover:text-red-400 transition"
                 >
-                  <li>
-                    <button onClick={() => { navigate("/products"); setMenuOpen(false); }} className="hover:text-blue-400">
-                      Products
-                    </button>
-                  </li>
-                  <li>
-                    {!user ? (
-                      <button onClick={() => { navigate("/login"); setMenuOpen(false); }} className="hover:text-blue-400">
-                        Login
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          const confirmLogout = window.confirm("Are you sure you want to logout?");
-                          if (confirmLogout) {
-                            logout();
-                            setMenuOpen(false);
-                          }
-                        }}
-                        className="hover:text-red-400"
-                      >
-                        Logout
-                      </button>
-                    )}
-                  </li>
-                  <li className="relative">
-                    <button
-                      onClick={() => { navigate("/cart"); setMenuOpen(false); }}
-                      className="hover:text-blue-400 flex items-center"
-                    >
-                      <FaShoppingCart className="text-xl mr-2" />
-                      Cart
-                      {cartCount > 0 && (
-                        <span className="ml-2 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
-                          {cartCount}
-                        </span>
-                      )}
-                    </button>
-                  </li>
-                  <li className="w-full">
-                    <LiveSearchBar />
-                  </li>
-                </motion.ul>
+                  Logout
+                </button>
               )}
-            </AnimatePresence>
+
+              <button onClick={() => navigate("/cart")} className="relative hover:text-blue-400 transition">
+                <FaShoppingCart className="text-xl" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            </div>
+
+
+            {/* Hamburger (mobile only) */}
+            <div className="flex justify-end md:hidden">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Toggle Menu"
+              >
+                {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {menuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden px-6 pb-6"
+              >
+                <div className="pt-4 space-y-4 text-lg font-medium border-t border-gray-700">
+                  <LiveSearchBar />
+
+                  <button onClick={() => { navigate("/products"); setMenuOpen(false); }} className="block w-full text-left hover:text-blue-400 transition">
+                    Products
+                  </button>
+
+                  {!user ? (
+                    <button onClick={() => { navigate("/login"); setMenuOpen(false); }} className="block w-full text-left hover:text-blue-400 transition">
+                      Login
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        const confirmLogout = window.confirm("Are you sure you want to logout?");
+                        if (confirmLogout) {
+                          logout();
+                          setMenuOpen(false);
+                        }
+                      }}
+                      className="block w-full text-left hover:text-red-400 transition"
+                    >
+                      Logout
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => { navigate("/cart"); setMenuOpen(false); }}
+                    className="flex items-center gap-2 hover:text-blue-400 transition"
+                  >
+                    <FaShoppingCart />
+                    Cart
+                    {cartCount > 0 && (
+                      <span className="bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
+                        {cartCount}
+                      </span>
+                    )}
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.nav>
       )}
     </AnimatePresence>

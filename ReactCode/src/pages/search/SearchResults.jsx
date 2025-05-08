@@ -51,7 +51,7 @@ const SearchResults = () => {
       {loading ? (
         <p className="text-gray-400">Searching...</p>
       ) : results.length === 0 ? (
-        <p className="text-gray-500">No results found.</p>
+        <p className="text-gray-500 text-center">No results found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {results.map((product) => (
@@ -62,7 +62,7 @@ const SearchResults = () => {
               comboPrice={product.flyMoreComboPrice}
               slug={product.slug}
               image={product.images?.[0]}
-              linkTo={`/products/${product._type === "FPVDrones" ? "fpv" : product._type === "SecondaryProducts" ? "secondary" : "cine"}/${product.slug.current}`}
+              linkTo={`/products/${product._type === "FPVDrones" ? "fpv" : product._type === "SecondaryProducts" ? "accessories" : "cine"}/${product.slug.current}`}
             />
           ))}
         </div>
