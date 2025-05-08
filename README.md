@@ -31,6 +31,7 @@
 | **Cloudinary**    | Media (video/image) CDN        |
 | **Zustand**       | Global state management        |
 | **Three Lib**     | 3D Model Animation             |
+| **Lucide-react**  | Search Function                |
 
 ---
 
