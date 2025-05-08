@@ -7,7 +7,7 @@ const Contacts = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setMessageSent(true);
-    setTimeout(() => setMessageSent(false), 4000); // Nasconde dopo 4 sec
+    setTimeout(() => setMessageSent(false), 4000); 
   };
 
   return (
@@ -19,7 +19,6 @@ const Contacts = () => {
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         <div className="space-y-6">
-          {/* Info contatti */}
           <div>
             <h2 className="text-xl font-semibold mb-2">Email</h2>
             <p className="text-gray-300">support@dronehub.com</p>
@@ -38,7 +37,6 @@ const Contacts = () => {
           </div>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <h2 className="text-2xl font-semibold mb-4">Contact Support</h2>
           <input

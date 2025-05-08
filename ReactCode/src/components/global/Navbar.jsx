@@ -50,9 +50,7 @@ const Navbar = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur shadow-md text-white"
         >
-          {/* Top bar - 3 columns */}
           <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-3 items-center">
-            {/* Logo (left) */}
             <div className="flex items-center gap-3 justify-start">
               <button onClick={handleHomeClick} className="hover:scale-105 transition">
                 <img
@@ -63,7 +61,6 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Title (center) */}
             <div className="flex justify-center">
               <button
                 onClick={handleHomeClick}
@@ -73,7 +70,6 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Right side (desktop): search + nav */}
             <div className="hidden md:flex items-center gap-6 justify-end">
               <div className="w-48">
                 <LiveSearchBar />
@@ -110,7 +106,7 @@ const Navbar = () => {
             </div>
 
 
-            {/* Hamburger (mobile only) */}
+            {/* mobile */}
             <div className="flex justify-end md:hidden">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -121,7 +117,6 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu */}
           <AnimatePresence>
             {menuOpen && (
               <motion.div

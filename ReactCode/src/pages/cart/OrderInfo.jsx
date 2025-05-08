@@ -36,6 +36,7 @@ const OrderInfo = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  //create a separate compontent for validate
   const validate = () => {
     const errs = {};
     if (!form.firstName.trim()) errs.firstName = "First name is required.";
