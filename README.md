@@ -88,12 +88,12 @@ DroneHub/
   <br>
 
   ![Screenshot 2025-05-07 at 17-19-18 DroneHub](https://github.com/user-attachments/assets/535cc734-bc86-4551-8a7d-1ebd32bde449)
-  
-  ![screnn2](https://github.com/user-attachments/assets/ed093bca-1f5e-49f3-9ff0-2d40f2154d3d)
-  
-  ![screen3](https://github.com/user-attachments/assets/bf34ea9e-523f-452d-9055-2c44c10629e7)
-  
-  ![screen4](https://github.com/user-attachments/assets/95b7b408-6aff-45d1-afda-c83e0638218d)
+
+  ![1](https://github.com/user-attachments/assets/a8f8977d-9588-4a96-93d8-31d3d1064e43)
+
+  ![2](https://github.com/user-attachments/assets/1738f372-0100-4e5d-a5fa-0ed36ab6dcf2)
+
+  ![3](https://github.com/user-attachments/assets/767f0d51-0e8b-409b-918d-89c690b63d26)
 
 </details>
 
