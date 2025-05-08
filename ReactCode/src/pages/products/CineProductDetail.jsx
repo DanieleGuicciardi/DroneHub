@@ -198,7 +198,7 @@ const CineProductDetail = () => {
 
       <PriceBar
         visible={showBar}
-        price={drone.price}
+        price={totalPrice}
         added={added}
         onAddToCart={handleAddToCart}
       />

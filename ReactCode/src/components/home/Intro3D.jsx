@@ -56,30 +56,37 @@ const Intro3D = ({ onScrollTo }) => {
           transition={{ delay: 1 }}
           className="flex gap-6"
         >
-          <button
-            onClick={() => onScrollTo("stabilized")}
-            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 
-              hover:from-blue-600 hover:to-blue-500 
-              text-white font-semibold rounded-3xl shadow-md hover:shadow-lg 
-              transform hover:scale-105 
-              transition-all duration-500 
-              border border-black text-lg tracking-wide hover:tracking-wider
-              "
-          >
-            Stabilized
-          </button>
-          <button
-            onClick={() => onScrollTo("fpv")}
-            className="min-w-[200px] px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-700 
-              hover:from-blue-600 hover:to-blue-500 
-              text-white font-semibold rounded-3xl shadow-md hover:shadow-lg 
-              transform hover:scale-105 
-              transition-all duration-500 
-              border border-black text-lg tracking-wide hover:tracking-wider
-              "
-          >
-            FPV
-          </button>
+        <button
+          onClick={() => onScrollTo("stabilized")}
+          className="w-full sm:w-auto min-w-[150px] sm:min-w-[200px]
+                      px-6 py-2 sm:px-8 sm:py-4 
+                      bg-gradient-to-r from-blue-800 to-blue-700 
+                      hover:from-blue-600 hover:to-blue-500 
+                      text-white font-semibold rounded-3xl 
+                      shadow-md hover:shadow-lg 
+                      transform hover:scale-105 
+                      transition-all duration-500 
+                      border border-black 
+                      text-base sm:text-lg tracking-wide"
+        >
+          Stabilized
+        </button>
+
+        <button
+          onClick={() => onScrollTo("fpv")}
+          className="w-full sm:w-auto min-w-[150px] sm:min-w-[200px]
+                      px-6 py-2 sm:px-8 sm:py-4 
+                      bg-gradient-to-r from-blue-800 to-blue-700 
+                      hover:from-blue-600 hover:to-blue-500 
+                      text-white font-semibold rounded-3xl 
+                      shadow-md hover:shadow-lg 
+                      transform hover:scale-105 
+                      transition-all duration-500 
+                      border border-black 
+                      text-base sm:text-lg tracking-wide"
+        >
+          FPV
+        </button>
         </motion.div>
       </div>
     </div>
